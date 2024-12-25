@@ -12,36 +12,174 @@
             list-style: none;
         }
 
+        .container {
+            width: 100%;
+            background-color: #ebf1f7;
+        }
+
         .collapse-banner {
             width: 100%;
-            display: flex;
-            background-color: rgb(240, 138, 28);
-            height: 40px;
-            align-items: center;
-            opacity: .5;
+            height: 50px;
+            background-color: #e69553;
         }
 
-        .collapse-banner .box {
+        .collapse-banner .banner {
             display: flex;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .box a {
             font-size: 12px;
+            line-height: 50px;
+            color: white;
+        }
+
+        .collapse-banner .banner a {
+            display: block;
+            width: 100%;
+            text-align: center;
             color: white;
             text-decoration: none;
         }
 
-        .collapse-banner label {
-            font-size: 20px;
-            color: white;
-
+        .collapse-banner .banner label {
+            font-size: 16px;
+            padding: 0 5px;
         }
 
-        .container input:checked~.collapse-banner {
+        .container input:checked+.collapse-banner {
             display: none;
         }
+
+        .guide-banner {
+            margin: auto;
+            width: 960px;
+
+        }
+
+        .guide-banner .login-language {
+            text-align: right;
+        }
+
+        .guide-banner .login-language a {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            margin: 10px;
+            font-size: 12px;
+        }
+
+        .guideBtn-box {
+            display: flex;
+            justify-content: space-between;
+            height: 50px;
+
+        }
+
+        .guideBtn-box>li {
+            color: #052754;
+            font-size: 16px;
+            line-height: 50px;
+            border-bottom: 3px solid ebf1f7;
+            transition: border-bottom .5s ease;
+        }
+
+        .guideBtn-box>li:hover {
+            border-bottom: 3px solid #0062ff;
+        }
+
+        .guideBtn-box li a {
+            text-decoration: none;
+            color: #5d6a7a;
+        }
+
+        .guideBtn-box>li>ul {
+            display: none;
+        }
+
+        .guideBtn-box .freeTryBtn {
+            display: block;
+            width: 150px;
+            text-align: center;
+            background-color: #0062ff;
+            border-radius: 10px;
+            transition: all .5s ease;
+        }
+
+        .guideBtn-box .freeTryBtn:hover {
+            background-color: #043380;
+        }
+
+        .guideBtn-box .freeTryBtn a {
+            color: white;
+            text-decoration: none;
+
+        }
+
+        header {
+            width: 100%;
+
+            background-color: #ebf1f7;
+        }
+
+        header .itemBox {
+            width: 960px;
+            margin: auto;
+        }
+
+        .aboutCompany {
+            display: flex;
+            justify-content: space-between;
+            padding: 60px 30px 0;
+        }
+
+        .aboutCompany .textBox {
+            padding: 6.5% 0;
+        }
+
+        .aboutCompany {}
+
+        .aboutCompany>div {
+            width: 400px;
+        }
+
+        .aboutCompany .textBox h1 {
+            display: flex;
+            flex-direction: column;
+            color: #052754;
+            font-size: 35px;
+            line-height: 50px;
+            padding-bottom: 20px;
+        }
+
+        .aboutCompany .textBox p {
+            color: #6c7887;
+            font-size: 16px;
+            line-height: 22px;
+            padding-bottom: 20px;
+        }
+
+        .aboutCompany .textBox .free14daysBtn {
+            display: block;
+            width: 300px;
+            color: white;
+            background-color: #0062ff;
+            border-radius: 5px;
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .aboutCompany .textBox .remind {
+            color: #5d6a7a;
+            font-size: 12px;
+            padding-top: 20px;
+        }
+
+        .aboutCompany .imgBox img {
+            border-radius: 200px 200px 0 0;
+            vertical-align: bottom;
+        }
+
+        .aboutCompany2 {}
+        .aboutCompany2 h2{}
+        .aboutCompany2 p{}
     </style>
 
 </head>
@@ -49,87 +187,151 @@
 <body>
 
     <div class="container">
-        <input type="checkbox" name="" id="check" hidden>
+        <input type="checkbox" name="" id="closeBtn" hidden>
         <div class="collapse-banner">
-            <div class="box">
-                <a href="zzz"><strong>🎊助攻節慶商機!新戶開店補貼多重送👉</strong></a>
+            <div class="banner">
+                <a href="#"><strong>🎊助攻節慶商機!新戶開店補貼多重送👉</strong></a>
+                <label for="closeBtn"><strong>&times;</strong></label>
             </div>
-            <label for="check">&times;</label>
         </div>
         <div class="guide-banner">
-            <div class="img-box">
-                <a href="shopline.html"><img src="https://picsum.photos/300/200/?random=10"></a>
+            <div class="login-language">
+                <a href="#">登入</a>
+                <a href="#">🌐台灣</a>
             </div>
-            <ul>
-                <li>
-                    <a href="01.html">產品核心</a>
+            <ul class="guideBtn-box">
+                <li class="img-logo">
+                    <a href="shopline.html"><img src="https://picsum.photos/120/50/?random=10"></a>
                 </li>
-                <li>
-                    
-                    <a href="02.html">新手上路</a>
+                <li><a href="#">產品核心</a>
                 </li>
-                <li>
-                    <a href="03.html">開店服務</a>
+                <li><span>新手上路</span>
+                    <ul>
+                        <li><a href="#">開店諮詢</a></li>
+                        <li><a href="#">開店說明會</a></li>
+                        <li><a href="#">開店秘技</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="04.html">行銷推廣</a>
+                <li><span>開店服務</span>
+                    <ul>
+                        <li><span>網路開店</span>
+                            <ul>
+                                <li><a href="#">特色總覽</a></li>
+                                <li><a href="#">功能介紹</a></li>
+                                <li><a href="#">版型主題</a></li>
+                                <li><a href="#">SHOP Builder</a></li>
+                                <li><a href="#">客戶案例</a></li>
+                            </ul>
+                        </li>
+
+                        <li><span>社群購物</span>
+                            <ul>
+                                <li><a href="#">特色總覽</a></li>
+                                <li><a href="#">功能介紹</a></li>
+                                <li><a href="#">Instagram直播</a></li>
+                            </ul>
+                        </li>
+                        <li><span>零售POS</span>
+                            <ul>
+                                <li><a href="#">特色總覽</a></li>
+                                <li><a href="#">功能介紹</a></li>
+                                <li><a href="#">週邊硬體</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">跨靜電商方案</a></li>
+                        <li><span>更多功能應用</span>
+                            <ul>
+                                <li><a href="#">RFIM分眾行銷</a></li>
+                                <li><a href="#">Smart OMO會員導購工具</a></li>
+                                <li><a href="#">Shopper App</a></li>
+                                <li><a href="#">LINE 官方帳號整合</a></li>
+                                <li><a href="#">團購解決方案</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="05.html">營運管理</a>
+                <li><span>行銷推廣</span>
+                    <ul>
+                        <li><span>數位廣告</span>
+                            <ul>
+                                <li><a href="#">廣告計劃方案</a></li>
+                                <li><a href="#">Google廣告</a></li>
+                                <li><a href="#">Facebook廣告</a></li>
+                                <li><a href="#">LINE廣告</a></li>
+                                <li><a href="#">Criteo廣告</a></li>
+                            </ul>
+                        </li>
+                        <li><span>其他媒體與服務</span>
+                            <ul>
+                                <li><a href="#">網紅行銷服務</a></li>
+                                <li><a href="#">社群內容服務</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">社群電商工具包</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="06.html">方案費用</a>
+                <li><span>營運管理</span>
+                    <ul>
+                        <li><a href="#">金流服務</a></li>
+                        <li><a href="#">物流服務</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="07.html">更多資源</a>
+                <li><span>方案費用</span>
+                    <ul>
+                        <li><a href="#">開店方案</a></li>
+                        <li><a href="#">功能模組</a></li>
+                    </ul>
                 </li>
-
-
-
-
-
-
-
-                </ㄧ>
-                <botton>免費試用</botton>
+                <li><span>更多資源</span>
+                    <ul>
+                        <li><a href="#">開店資源圈</a></li>
+                        <li><a href="#">擴充功能商店</a></li>
+                        <li><a href="#">新手問答</a></li>
+                        <li><a href="#">電商教室</a></li>
+                        <li><a href="#">DreamBig創品牌</a></li>
+                        <li><a href="#">SHOPLINE TRENDS電商數據庫</a></li>
+                    </ul>
+                </li>
+                <li class="freeTryBtn"><a href="#"><strong>免費試用</strong></a>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="header">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium incidunt saepe nihil facere velit, rem
-            consectetur in, amet necessitatibus et quisquam culpa perferendis odit nostrum voluptatum possimus, minima
-            dolorem magni.</p>
-        <p>Ipsam fugiat quis iusto deserunt ad explicabo aliquam fugit, odit eveniet ipsa numquam molestias officia
-            debitis in corporis quas. Illo ipsa nostrum ut debitis iure alias sequi doloremque omnis aspernatur?</p>
-        <p>Atque nisi eos impedit ipsa, in hic modi velit dicta nihil corporis, soluta sed molestias autem laboriosam
-            provident voluptatibus! Facere aspernatur natus maiores tenetur, eum iste a consectetur numquam dolorum.</p>
-        <p>Unde accusantium excepturi consequuntur fugiat consectetur! Doloribus est asperiores nesciunt unde optio,
-            sapiente labore veniam molestiae quis, corporis officiis. Corporis nihil porro voluptatum dolorem ad,
-            aperiam optio harum asperiores eligendi.</p>
-        <p>Cupiditate minus autem error voluptate itaque assumenda laudantium cumque nostrum, aspernatur quo tempora?
-            Doloribus, aut magnam commodi porro quo aliquam debitis, soluta, necessitatibus eligendi exercitationem
-            consequuntur vel dolorem ducimus eaque.</p>
-        <p>Saepe, eveniet ad itaque veniam qui molestias fugiat vel sint perspiciatis. Pariatur dolores, at temporibus
-            iste libero ea unde blanditiis expedita impedit iure quisquam deserunt quae dicta, quam, itaque suscipit.
-        </p>
-        <p>Velit labore, minus facere aperiam ducimus veniam laboriosam fugit dignissimos expedita natus enim fugiat
-            sequi ad illum aut a? Natus minus mollitia exercitationem enim ad ullam, consequatur soluta nam amet!</p>
-        <p>Nulla voluptatibus architecto odit aut alias assumenda saepe nesciunt cumque iste, at iusto quaerat natus
-            error tempora cum velit quis, repudiandae eos nihil ea repellendus fuga autem? Doloribus, adipisci
-            assumenda.</p>
-        <p>Ullam beatae sapiente in cupiditate eos laborum voluptatibus reiciendis recusandae ratione maiores dolore,
-            distinctio nobis perferendis eum laboriosam molestias qui ipsam esse itaque est adipisci. Suscipit earum
-            ipsa dolore amet!</p>
-        <p>Harum, magni, nam repellat consequuntur modi ullam dolore maiores reprehenderit consequatur blanditiis itaque
-            hic tenetur laudantium totam exercitationem tempora esse! Consectetur optio tenetur quia, neque totam
-            nesciunt omnis corrupti sed.</p>
-    </div>
+    <header>
+        <div class="itemBox">
+            <div class="aboutCompany">
+                <div class="textBox">
+                    <h1><span>想在哪開店創業？</span>
+                        <span>不管是網路開店</span>
+                        <span>SHOPLINE 一站輕鬆開賣</span>
+                    </h1>
+                    <p>從個人賣家到國際品牌，都能以 SHOPLINE 實現全通路零售，快速拓展市場到世界各地，輕鬆開始你的『 店 』商生意！</p>
+                    <div class="free14daysBtn"><strong>免費試用14天</strong></div>
+                    <span class="remind">＊無需綁定信用卡提供付款資訊</span>
+                </div>
+                <div class="imgBox">
+                    <img src="https://picsum.photos/400/450/?random=10">
+                </div>
+            </div>
+            <div class="aboutCompany2">
+                <h2><span>單一平台就能助你</span>
+                    <span>在全通路輕鬆開店創業</span>
+                </h2>
+                <p>從網路商店架站到實體門市管理，只需要一個平台，就能輕鬆實現開店創業，並能同步管理所有銷售管道，SHOPLINE 助你賣得更多、賣得更好！</p>
+            </div>
+        </div>
+
+    </header>
     <div class="content">
 
     </div>
+
     <div class="footer">
 
     </div>
+    <div class="collapse-banner">
 
+    </div>
 </body>
 
 </html>
