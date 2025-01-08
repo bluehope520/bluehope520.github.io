@@ -33,32 +33,32 @@
 
 <body>
 
-    <div class="container">
-        <div class="header row ">
+    <div class="container ">
+        <div class="header row col-3">
             <div class="rangeText text-center border border-warning rounded-2"></div>
             <div class="inputText text-center border border-warning rounded-2"></div>
         </div>
        
-        <div class="buttonBox row">
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="1">1</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="2">2</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="3">3</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="4">4</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="5">5</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="6">6</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="7">7</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="8">8</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-1 text-center" data-val="9">9</button>
-            <button type="button " class="btn btn-outline-warning clearBtn col-4  fs-1 text-center">clear</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4  fs-1 text-center" data-val="0">0</button>
-            <button type="button " id="myBtn" class="btn btn-outline-warning btn btn-success checkAnswerBtn col-4  fs-1 text-center">check</button>
-            <button type="button " id="myBtn" class="btn btn-outline-warning gameStartBtn col-12  fs-1 text-center">Game Start</button>
+        <div class="buttonBox row col-3">
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="1">1</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="2">2</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="3">3</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="4">4</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="5">5</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="6">6</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="7">7</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="8">8</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="9">9</button>
+            <button type="button " class="btn btn-outline-warning clearBtn col-4  fs-6 text-center">clear</button>
+            <button type="button " class="btn btn-outline-warning numBtn col-4  fs-6 text-center" data-val="0">0</button>
+            <button type="button " id="myBtn" class="btn btn-outline-warning btn btn-success checkAnswerBtn col-4  fs-6 text-center">check</button>
+            <button type="button " id="myBtn" class="btn btn-outline-warning gameStartBtn col-12  fs-6 text-center">Game Start</button>
         </div>
     </div>
 
 
      <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal " id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -158,7 +158,7 @@
                             rangeText.innerHTML =`${min}~${max}`;
                             console.log(answerNum);;
                         });                   
-                        myModal.show();;
+                        myModal.show();
                         console.log(answerNum);
                                            
                     }else{
@@ -185,7 +185,7 @@
                        
                         modalBtn2.addEventListener("click", function () {                   
                 });                      
-                        myModal.show();;    
+                        myModal.show();    
                         
                     }
                     else if (guessNum < answerNum && guessNum > min) {

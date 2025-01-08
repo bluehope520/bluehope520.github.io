@@ -1,0 +1,196 @@
+.card {
+    margin: auto;
+    margin-top: 30px;
+    height: 80vh;
+    width: 80vh;
+    border-radius: 20px;
+    background: #1b233d;
+    padding: 10px;
+    /* overflow: hidden; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);            
+   display: flex;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card .top-section {
+    width: 45%;
+    height: 96%;
+    box-sizing: border-box;   
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(45deg, rgb(4, 159, 187) 0%, rgb(80, 246, 255) 100%);
+    /* position: relative; */
+    position: absolute;
+    right: 10px;
+}
+
+.card .top-section .border {
+    border-bottom-right-radius: 10px;
+    height: 30px;
+    width: 130px;
+    background: white;
+    background: #1b233d;
+    position: relative;
+    transform: skew(-40deg);
+    box-shadow: -10px -10px 0 0 #1b233d;
+}
+
+.card .top-section .border::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    right: -15px;
+    background: rgba(255, 255, 255, 0);
+    border-top-left-radius: 10px;
+    box-shadow: -5px -5px 0 2px #1b233d;
+}
+
+.card .top-section::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: rgba(255, 255, 255, 0);
+    height: 15px;
+    width: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: -5px -5px 0 2px #1b233d;
+}
+
+.card .top-section .icons {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    color: yellow;
+    line-height: 15px;
+}
+
+.card .top-section .icons .logo {
+    height: 100%;
+    aspect-ratio: 1;
+    padding: 7px 0 7px 15px;
+    display: block;
+    width: 100%;
+    
+}
+
+.card .top-section .icons .logo .top-section {
+    height: 100%;
+}
+
+.card .top-section .icons .social-media {
+    height: 100%;
+    padding: 8px 15px;
+    display: flex;
+    gap: 7px;    
+    width: 65%;
+    justify-content: end;
+}
+
+
+
+.card .bottom-section {
+    width: 45%;
+    height: 100%;
+    box-sizing: border-box;
+    
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 10px 5px;
+}
+
+.card .bottom-section .title {
+    display: block;
+    font-size: 17px;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.card .bottom-section .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card .bottom-section .row .item {
+    flex:1;
+    width: 80%;
+    text-align: center;
+    padding: 0 5px;
+    color: rgba(170, 222, 243, 0.721);
+}
+
+.card .bottom-section .row .item .big-text {
+    font-size: 12px;
+    display: block;
+}
+
+.card .bottom-section .row .item .regular-text {
+    font-size: 9px;
+}
+
+.card .bottom-section .row .item:nth-child(2) {
+    border-left: 1px solid rgba(255, 255, 255, 0.126);
+    border-right: 1px solid rgba(255, 255, 255, 0.126);
+}
+
+/* ----以下是checkBox.CSS---- */
+
+.checkbox {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .checkbox__input {
+    position: absolute;
+    opacity: 0;
+    width: 35%;
+    height: 0;
+    
+  }
+  
+  .checkbox__label {
+    display: inline-block;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .checkbox__custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg,#e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+  
+  .checkbox__input:checked + .checkbox__label .checkbox__custom {
+    background-image: linear-gradient(145deg,#e81cff, #40c9ff);
+    transform: rotate(45deg) scale(0.8);
+  }
+  
+  .checkbox__label:hover .checkbox__custom {
+    transform: scale(1.2);
+  }
+  
