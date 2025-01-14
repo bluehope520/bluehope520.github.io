@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Practice theHapp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style type="text/css"></style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="https://picsum.photos/id/63/140/32" />
+                </a>
+                <button class="navbar-toggler btn rounded-pill btn-secondary text-white" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars me-1"></i>
+                    <i class="fa-solid fa-user"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="#">登入</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="#">註冊</a>
+                        </li>
+                        <!-- <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="#">瀏覽空間</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="#">最愛空間</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">企業辦公專案</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">暢遊方案</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">空間靈感</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="#">儲值點數</a>
+                        </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link" href="#">常見問題</a>
+                        </li>
+
+                        <li class="nav-item dropdown d-none d-lg-flex">
+                            <a class="nav-link dropdown-toggle btn rounded-pill btn-secondary bg-secondary text-white"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bars me-1"></i>
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">登入</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">註冊</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">儲值點數</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">常見問題</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li> -->
+                    </ul>
+                    <!-- <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
+                </div>
+            </div>
+        </nav>
+    </header>
+    <img src="" />
+
+    <article class="banner px-5">
+        <h1>讓每次推開門都成為一段絕無僅有的美好時光</h1>
+        <form class="search-form" action="">
+            <div class="input-group bg-white rounded-2 mb-3 mb-lg-0 p-lg-3">
+                <label for="location">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span class="d-none d-lg-inline">搜尋</span>
+                </label>
+                <input id="location" type="text" class="form-control border-0" placeholder="您想找些什麼呢?"
+                    aria-label="Username" aria-describedby="basic-addon1" />
+            </div>
+            <div class="input-group bg-white rounded-2 mb-3 mb-lg-0 p-lg-3">
+                <label for="location">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span class="d-none d-lg-inline">時間</span>
+                </label>
+                <input id="date" type="text" class="form-control border-0" placeholder="任何日期與時間" aria-label="Username"
+                    aria-describedby="basic-addon1" />
+            </div>
+            <div class="input-group bg-white rounded-2 mb-3 mb-lg-0 p-lg-3">
+                <label for="location">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="d-none d-lg-inline">人數</span>
+                </label>
+                <input id="guest" type="text" class="form-control border-0" placeholder="1-60+" aria-label="Username"
+                    aria-describedby="basic-addon1" />
+            </div>
+
+            <button class="btn btn-success">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                搜尋
+            </button>
+        </form>
+    </article>
+
+    <article class="container events-container">
+        <h2 class="mb-3">受歡迎的使用情境</h2>
+        <section class="events">
+            <div class="card text-bg-dark text-white border-0 rounded-4 overflow-hidden">
+                <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h3 class="card-title m-0">商務/辦公</h3>
+                </div>
+            </div>
+            <div class="card text-bg-dark text-white border-0 rounded-4 overflow-hidden">
+                <img src="https://picsum.photos/id/66/600/400" class="card-img" alt="..." />
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h3 class="card-title m-0">課程/教學</h3>
+                </div>
+            </div>
+            <div class="card text-bg-dark text-white border-0 rounded-4 overflow-hidden">
+                <img src="https://picsum.photos/id/67/600/400" class="card-img" alt="..." />
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h3 class="card-title m-0">攝影/錄影</h3>
+                </div>
+            </div>
+            <div class="card text-bg-dark text-white border-0 rounded-4 overflow-hidden">
+                <img src="https://picsum.photos/id/68/600/400" class="card-img" alt="..." />
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h3 class="card-title m-0">聚會</h3>
+                </div>
+            </div>
+            <div class="card text-bg-dark text-white border-0 rounded-4 overflow-hidden">
+                <img src="https://picsum.photos/id/69/600/400" class="card-img" alt="..." />
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h3 class="card-title m-0">讀書/討論</h3>
+                </div>
+            </div>
+            <div class="card text-bg-dark text-white border-0 rounded-4 overflow-hidden">
+                <img src="https://picsum.photos/id/98/600/400" class="card-img" alt="..." />
+                <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                    <h3 class="card-title m-0">心靈成長</h3>
+                </div>
+            </div>
+        </section>
+        <section class="event-chips d-flex flex-wrap">
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">商品攝影</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">人像攝影</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">直播</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">記者會</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">影片拍攝</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">生日派對</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">家庭聚會</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">電影欣賞會</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">朋友聚會</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">聖誕派對</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">桌遊</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">遠距工作</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">臨時辦公室/工作室</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">會議室</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">線上面試</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">研討會/交流會</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">講座/培訓</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">兒童課程</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">小班教學/家教</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">手作課程</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">讀書會</a>
+            <a href="#"
+                class="px-1 py-2 chip rounded-2 border border-1 border-black text-decoration-none text-black">小組討論</a>
+        </section>
+        <div class="d-flex justify-content-end align-items-center mt-4">
+            <a class="text-black" href="#">查看所有選項</a>
+            <span>→</span>
+        </div>
+    </article>
+
+    <article class="container poster-container">
+        <div class="poster swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <a href="#" class="swiper-slide rounded-2 overflow-hidden">
+                    <img src="https://picsum.photos/id/34/1200/500" class="object-fit-cover align-top" />
+                </a>
+                <a href="#" class="swiper-slide rounded-2 overflow-hidden">
+                    <img src="https://picsum.photos/id/35/1200/500" class="object-fit-cover align-top" />
+                </a>
+                <a href="#" class="swiper-slide rounded-2 overflow-hidden">
+                    <img src="https://picsum.photos/id/33/1200/500" class="object-fit-cover align-top" />
+                </a>
+            </div>
+            <!-- If we need pagination -->
+            <div class="dots-list"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="pre-btn"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="next-btn"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <!-- If we need scrollbar -->
+            <!-- <div class="swiper-scrollbar"></div> -->
+        </div>
+    </article>
+
+    <article class="container-fluid promote-container">
+        <!-- <div class="container-lg d-flex align-items-center justify-content-center "> -->
+        <div class="container-lg d-lg-flex align-items-center">
+            <div class="imgBox rounded-2 overflow-hidden">
+                <img src="https://picsum.photos/id/1/800/300" class="w-100 h-100 object-fit-cover align-top" />
+            </div>
+            <!-- <div class="textBox d-flex justify-content-center align-items-center mt-4"> -->
+            <div class="textBox mt-3 mt-lg-0">
+                <h2 class="fw-bold">
+                    台南分館 虹樹<br />
+                    坐落友愛街全新開幕！
+                </h2>
+                <a href="#">立即參觀體驗 <span>→</span></a>
+            </div>
+        </div>
+        <div class="promote-carousel swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" class="card text-bg-dark text-white border-0 rounded-2 overflow-hidden">
+                        <img src="https://picsum.photos/id/65/600/400" class="card-img" alt="..." />
+                        <div class="card-img-overlay d-flex flex-column justify-content-end align-items-start">
+                            <p class="card-text">虹樹 102</p>
+                            <p class="card-text">$200 / 小時</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- background img -->
+            </div>
+        </div>
+    </article>
+
+    <article class="formula-container">
+        <section class="workspace">
+            <h3 class="fw-bold">遠距工作也要專注高效率</h3>
+            <div class="content">
+                <p>在零打擾的專屬空間，找回屬於自己的專注節奏</p>
+                <a href="#">更多遠距工作空間</a>
+            </div>
+            <div class="space swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper card-box">
+                    <!-- Slides -->
+                    <a href="#" class="swiper-slide rounded-2 overflow-hidden card">
+                        <div class="img-box">
+                            <img src="https://picsum.photos/id/43/330/220" class="card-img-top" alt="..." />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">桂竹分館 ｜ 7 間</h5>
+                            <p class="card-text">捷運士林站 1 分鐘</p>
+                        </div>
+                    </a>
+                    <a href="#" class="swiper-slide rounded-2 overflow-hidden card">
+                        <div class="img-box">
+                            <img src="https://picsum.photos/id/44/330/220" class="card-img-top" alt="..." />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">木棉分館 ｜ 11 間</h5>
+                            <p class="card-text">捷運善導寺站 1 分鐘</p>
+                        </div>
+                    </a>
+                    <a href="#" class="swiper-slide rounded-2 overflow-hidden card">
+                        <div class="img-box">
+                            <img src="https://picsum.photos/id/45/330/220" class="card-img-top" alt="..." />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">月橘分館 ｜ 8 間</h5>
+                            <p class="card-text">捷運民權西路站 4 分鐘</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="workspace">
+            <h3 class="fw-bold">聚會新選擇 防疫不打折</h3>
+            <div class="content">
+                <p>舒適安心聚會空間，享受與朋友們再次相聚的快樂</p>
+                <a href="#">更多空間</a>
+            </div>
+            <div class="space swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper card-box">
+                    <!-- Slides -->
+                    <a href="#" class="swiper-slide rounded-2 overflow-hidden card">
+                        <div class="img-box">
+                            <img src="https://picsum.photos/id/40/330/220" class="card-img-top" alt="..." />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">
+                                巒大杉 101 ｜<i class="fa-solid fa-people-group"></i> 24
+                            </h5>
+                            <p class="card-text">$ 660 - $ 730</p>
+                        </div>
+                    </a>
+                    <a href="#" class="swiper-slide rounded-2 overflow-hidden card">
+                        <div class="img-box">
+                            <img src="https://picsum.photos/id/41/330/220" class="card-img-top" alt="..." />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">
+                                蒲公英 909 ｜ <i class="fa-solid fa-people-group"></i> 5
+                            </h5>
+                            <p class="card-text">$ 280 - $ 310</p>
+                        </div>
+                    </a>
+                    <a href="#" class="swiper-slide rounded-2 overflow-hidden card">
+                        <div class="img-box">
+                            <img src="https://picsum.photos/id/42/330/220" class="card-img-top" alt="..." />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">
+                                木棉 205 ｜ <i class="fa-solid fa-people-group"></i> 6
+                            </h5>
+                            <p class="card-text">$ 320 - $ 350</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="card moreSolution text-center row">
+            <div class="img-box col-md-8 p-0">
+                <img src="https://picsum.photos/id/99/1000/700" class="card-img-top" alt="..." />
+            </div>
+            <div class="card-body col-md-4">
+                <h5 class="card-title fw-bold">企業遠距辦公方案</h5>
+                <p class="card-text">
+                    按人數、地點客製專屬多日租方案<br />幫您節省租金成本、提升團隊工作效率
+                </p>
+                <a href="#"><button class="btn btn-success">了解方案</button></a>
+            </div>
+        </section>
+
+        <section class="card aboutTheHapp text-lg-center row">
+            <div class="img-box p-0">
+                <!-- <img src="https://picsum.photos/id/98/1600/900" class="card-img-top" alt="..."> -->
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">
+                    我們相信，在這裡發生的每件事情<br />都有著超越你我想像的創造力
+                </h5>
+                <p class="card-text">
+                    不論是工作、上課、錄Podcast、閱讀，或是做上一整天的白日夢，在這裡，你將擁有無限大的可能性，盡情展現「實現此刻」的能力。
+                </p>
+                <a href="#"><button class="btn btn-outline-success">
+                        認識 Happ. 小樹屋
+                    </button></a>
+            </div>
+        </section>
+
+        <section class="bookSpace row">
+            <div class="text-box col-12">
+                <h4>輕鬆使用 Happ. 小樹屋</h4>
+                <p>簡單三步驟，快速完成場地預訂！</p>
+            </div>
+            <div class="card mb-3 col-12 col-md-4">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <i class="fa-solid fa-building-circle-check"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">線上預訂空間</h5>
+                            <p class="card-text">
+                                在網站上尋找合適空間，確認好租用時段，30 秒輕鬆完成預訂。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 col-12 col-md-4">
+                <div class="row g-0">
+                    <div class="col-4">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">專屬密碼進出空間</h5>
+                            <p class="card-text">
+                                透過訂單顯示的專屬密碼，即可在租用時段內自由進出使用場地。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 col-12 col-md-4">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">免費修改與取消預訂</h5>
+                            <p class="card-text">
+                                預訂開始時間的 48 小時前，都能回到網站無條件修改或取消訂單。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seeMoreSpace d-flex align-items-center">
+            <h4 class="fw-bold">立刻預訂屬於你的美好時光</h4>
+            <p class="fw-bold">在專屬的時間與空間裡，盡情揮灑無限的創造力</p>
+            <a href="#"><button class="btn btn-success">前往瀏覽空間</button></a>
+        </section>
+
+
+    </article>
+
+    <article class="footer">
+        <section >
+            <div class="card">
+                <div class="img-box mb-3">
+                    <img src="https://picsum.photos/id/50/130/25">
+                </div>
+                <div class="card-body p-0">
+                    <h5 class="card-title">讓每次推開門 都是一段絕無僅有的美好時光</h5>
+                    <p class="card-text">Happ. 小樹屋想帶給你的不僅僅是空間，更是一段絕無僅有的時光；獻給每個「實現此刻」的你，讓美好的事物與回憶就此發生。</p>
+                </div>
+            </div>
+            <ul class="items">
+                <h5>Happ. 小樹屋</h5>
+                <a href="#">
+                    <li>空間靈感</li>
+                </a>
+                <a href="#">
+                    <li>品牌願景</li>
+                </a>
+                <a href="#">
+                    <li>台南空間</li>
+                </a>
+                <a href="#">
+                    <li>台中空間</li>
+                </a>
+                <a href="#">
+                    <li>Sitemap</li>
+                </a>
+            </ul>
+            <ul class="items">
+                <h5>空間服務</h5>
+                <a href="#">
+                    <li>瀏覽空間</li>
+                </a>
+                <a href="#">
+                    <li>最愛空間</li>
+                </a>
+                <a href="#">
+                    <li>暢遊方案</li>
+                </a>
+                <a href="#">
+                    <li>企業辦公專案</li>
+                </a>
+                <a href="#">
+                    <li>常見問答</li>
+                </a>
+                <a href="#">
+                    <li>儲值點數</li>
+                </a>
+            </ul>
+            <ul class="items">
+                <h5>會員條款</h5>
+                <a href="#">
+                    <li>使用者條款</li>
+                </a>
+                <a href="#">
+                    <li>隱私權保護政策</li>
+                </a>
+                <a href="#">
+                    <li>暢遊方案條款</li>
+                </a>
+                <a href="#">
+                    <li>儲值點數說明</li>
+                </a>
+            </ul>
+            <ul class="items">
+                <h5>聯絡我們</h5>
+                <a href="#"><i class="fa-brands fa-line"></i></a>
+            </ul>
+            <div class="theLine"></div>
+            <div class="foot-copy w-100">
+                <p> © Happ. 小樹屋 All rights reserved </p>
+                <p> 好域股份有限公司 統一編號：52380939 </p>
+            
+            </div>
+        </section>
+
+
+
+    </article>
+
+    <!-- <ul class="arrowlist">
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+    </ul> -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
