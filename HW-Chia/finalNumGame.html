@@ -1,64 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>finalNumGame</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style type="text/css">
-        div[class*="col-"]{
-            padding: 0;
-        }
-        .header div {
-            height: 80px;
-            text-align: center;
-            font-size: 48px;
-            line-height: 80px;
-            color: red;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>finalNumGame</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <style type="text/css">
+    div[class*="col-"] {
+      padding: 0;
+    }
 
-        }
+    .header div {
+      height: 80px;
+      text-align: center;
+      font-size: 48px;
+      line-height: 80px;
+      color: red;
+    }
 
-        .buttonBox button {
-            background-color: white;
-        }
+    .buttonBox button {
+      background-color: white;
+    }
 
-        .buttonBox button:hover {
-
-            color: white;
-        }
-    </style>
+    .buttonBox button:hover {
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-
-    <div class="container ">
-        <div class="header row col-3">
-            <div class="rangeText text-center border border-warning rounded-2"></div>
-            <div class="inputText text-center border border-warning rounded-2"></div>
-        </div>
-       
-        <div class="buttonBox row col-3">
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="1">1</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="2">2</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="3">3</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="4">4</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="5">5</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="6">6</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="7">7</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="8">8</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="9">9</button>
-            <button type="button " class="btn btn-outline-warning clearBtn col-4  fs-6 text-center">clear</button>
-            <button type="button " class="btn btn-outline-warning numBtn col-4  fs-6 text-center" data-val="0">0</button>
-            <button type="button " id="myBtn" class="btn btn-outline-warning btn btn-success checkAnswerBtn col-4  fs-6 text-center">check</button>
-            <button type="button " id="myBtn" class="btn btn-outline-warning gameStartBtn col-12  fs-6 text-center">Game Start</button>
-        </div>
+  <div class="container">
+    <div class="header row col-3">
+      <div class="rangeText text-center border border-warning rounded-2"></div>
+      <div class="inputText text-center border border-warning rounded-2"></div>
     </div>
 
+    <div class="buttonBox row col-3">
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="1">
+        1
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="2">
+        2
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="3">
+        3
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="4">
+        4
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="5">
+        5
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="6">
+        6
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="7">
+        7
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="8">
+        8
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="9">
+        9
+      </button>
+      <button type="button " class="btn btn-outline-warning clearBtn col-4 fs-6 text-center">
+        clear
+      </button>
+      <button type="button " class="btn btn-outline-warning numBtn col-4 fs-6 text-center" data-val="0">
+        0
+      </button>
+      <button type="button " id="myBtn"
+        class="btn btn-outline-warning btn btn-success checkAnswerBtn col-4 fs-6 text-center">
+        check
+      </button>
+      <button type="button " id="myBtn" class="btn btn-outline-warning gameStartBtn col-12 fs-6 text-center">
+        Game Start
+      </button>
+    </div>
+  </div>
 
-     <!-- Modal -->
-  <div class="modal " id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -67,191 +91,167 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <!-- <div class="modal-body"> -->
-        <div class="modalBody">
-          ...
-        </div>
+        <div class="modalBody">...</div>
         <div class="modal-footer">
-          <button type="button" class="modalBtn1 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="modalBtn1 btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
           <button type="button" class="modalBtn2 btn btn-primary" data-bs-dismiss="modal"></button>
         </div>
       </div>
     </div>
   </div>
 
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 
-    <script>
-                let min=1;
-                let max=100;
-                let answerNum;
-                let guessNum;
+  <script>
+    let min = 1;
+    let max = 100;
+    let answerNum;
+    let guessNum;
 
-                // const numBtn = document.querySelector(".numBtn");
-                const inputText = document.querySelector(".inputText");
-                const rangeText = document.querySelector(".rangeText");
-                const numList = document.querySelectorAll(".numBtn");
+    // const numBtn = document.querySelector(".numBtn");
+    const inputText = document.querySelector(".inputText");
+    const rangeText = document.querySelector(".rangeText");
+    const numList = document.querySelectorAll(".numBtn");
 
-                function modalBtn2Restart(){
-                    modalBtn2.addEventListener("click", function () {
-                            modalBody.innerHTML = `確定要重新開始?`;
-                            modalBtn2.innerHTML = `Start`;
-                            min=1;
-                            max=100;
-                            answerNum = getRandomInt(1, 101);
-                            rangeText.innerHTML =`${min}~${max}`;
-                            console.log(answerNum);;
-                        });   
-                } 
-                function modalBtn2Check(){
-                        modalBody.innerHTML = `確定要重新開始?`                      
-                } 
-                // const numbox = document.querySelector(".buttonBox");
+    function modalBtn2Restart() {
+      modalBtn2.addEventListener("click", function () {
+        modalBody.innerHTML = `確定要重新開始?`;
+        modalBtn2.innerHTML = `Start`;
+        min = 1;
+        max = 100;
+        answerNum = getRandomInt(1, 101);
+        rangeText.innerHTML = `${min}~${max}`;
+        console.log(answerNum);
+      });
+    }
+    function modalBtn2Check() {
+      modalBody.innerHTML = `確定要重新開始?`;
+    }
+    // const numbox = document.querySelector(".buttonBox");
 
-                
-                // numbox.addEventListener("click",function(e){
-                //     console.log(e.target.dataset);
-                //     const num = e.target.dataset.val;
-                //     console.log(num);
-                //     inputText.innerHTML += `${num}` ;
-                // })
-                // numList.addEventListener("click",function(e){
-                //     console.log(e.target.dataset);
-                //     const num = e.target.dataset.val;
-                //     console.log(num);
-                //     inputText.innerHTML += `${num}` ;
-                // })
-            // 
-                numList.forEach(function(el){
-                    
-            el.addEventListener("click",function (e){
-                console.log(e.target.dataset);
-                const num = e.target.dataset.val;                
-                inputText.innerHTML += `${num}`;
-            });
+    // numbox.addEventListener("click",function(e){
+    //     console.log(e.target.dataset);
+    //     const num = e.target.dataset.val;
+    //     console.log(num);
+    //     inputText.innerHTML += `${num}` ;
+    // })
+    // numList.addEventListener("click",function(e){
+    //     console.log(e.target.dataset);
+    //     const num = e.target.dataset.val;
+    //     console.log(num);
+    //     inputText.innerHTML += `${num}` ;
+    // })
+    //
+    numList.forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        console.log(e.target.dataset);
+        const num = e.target.dataset.val;
+        inputText.innerHTML += `${num}`;
+      });
+    });
+
+    const gameStartBtn = document.querySelector(".gameStartBtn");
+    const checkAnswerBtn = document.querySelector(".checkAnswerBtn");
+    const clearBtn = document.querySelector(".clearBtn");
+
+    function getRandomInt(min, max) {
+      const minCeiled = Math.ceil(min);
+      const maxFloored = Math.floor(max);
+      return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 不包含最大值，包含最小值
+    }
+
+    gameStartBtn.addEventListener("click", function () {
+      modalBtn2.style["display"] = "";
+      if (answerNum) {
+        // modalBtn2Restart();
+        modalBody.innerHTML = `確定要重新開始?`;
+        modalBtn2.innerHTML = `Start`;
+        modalBtn2.addEventListener("click", function () {
+          min = 1;
+          max = 100;
+          answerNum = getRandomInt(1, 101);
+          rangeText.innerHTML = `${min}~${max}`;
+          console.log(answerNum);
         });
-                
-                const gameStartBtn = document.querySelector(".gameStartBtn")
-                const checkAnswerBtn = document.querySelector(".checkAnswerBtn")
-                const clearBtn = document.querySelector(".clearBtn")
+        myModal.show();
+        console.log(answerNum);
+      } else {
+        answerNum = getRandomInt(1, 101);
+        rangeText.innerHTML = `${min}~${max}`;
+        console.log(answerNum);
+      }
+      inputText.innerHTML = ``;
+    });
+    clearBtn.addEventListener("click", function () {
+      inputText.innerHTML = ``;
+    });
 
+    checkAnswerBtn.addEventListener("click", function () {
+      guessNum = parseInt(inputText.textContent);
+      console.dir(guessNum);
+      // if(!guessNum){
+      modalBtn2.style["display"] = "none";
+      // }
+      if (guessNum <= min || guessNum >= max) {
+        console.log("輸入範圍錯誤，請重新輸入");
+        modalTitle.innerHTML = `錯誤訊息`;
+        modalBody.innerHTML = `輸入範圍錯誤，請重新輸入`;
 
-                function getRandomInt(min, max) {
-                    const minCeiled = Math.ceil(min);
-                    const maxFloored = Math.floor(max);
-                    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 不包含最大值，包含最小值
-                };
+        modalBtn2.addEventListener("click", function () { });
+        myModal.show();
+      } else if (guessNum < answerNum && guessNum > min) {
+        min = guessNum;
+        rangeText.innerHTML = `${min}~${max}`;
+      } else if (guessNum > answerNum && guessNum < max) {
+        max = guessNum;
+        rangeText.innerHTML = `${min}~${max}`;
+      } else if (guessNum === answerNum) {
+        console.log(`恭喜猜中,答案是數字${answerNum}`);
+        modalTitle.innerHTML = `恭喜猜中`;
+        modalBody.innerHTML = `答案是數字${answerNum}`;
+        myModal.show();
+        rangeText.innerHTML = `${answerNum}`;
+      }
+      inputText.innerHTML = ``;
+    });
 
-                gameStartBtn.addEventListener("click", function () {
-                    modalBtn2.style["display"] = "";
-                    if (answerNum) { 
-                        // modalBtn2Restart();     
-                        modalBody.innerHTML = `確定要重新開始?`;
-                        modalBtn2.innerHTML = `Start`;
-                        modalBtn2.addEventListener("click", function () {                           
-                            min=1;
-                            max=100;
-                            answerNum = getRandomInt(1, 101);
-                            rangeText.innerHTML =`${min}~${max}`;
-                            console.log(answerNum);;
-                        });                   
-                        myModal.show();
-                        console.log(answerNum);
-                                           
-                    }else{
-                        answerNum = getRandomInt(1, 101);
-                        rangeText.innerHTML =`${min}~${max}` 
-                        console.log(answerNum);
-                    }
-                    inputText.innerHTML =`` ;
-                });
-                clearBtn.addEventListener("click", function () {
-                    inputText.innerHTML =``;
-                });
+    const modalTitle = document.querySelector(".modalTitle");
+    const modalBody = document.querySelector(".modalBody");
+    const modalBtn1 = document.querySelector(".modalBtn1");
+    const modalBtn2 = document.querySelector(".modalBtn2");
 
-                checkAnswerBtn.addEventListener("click", function () {
-                    guessNum =parseInt(inputText.textContent);
-                    console.dir(guessNum)
-                    // if(!guessNum){
-                        modalBtn2.style["display"] = "none";
-                    // }
-                    if (guessNum <= min || guessNum >= max) {
-                        console.log("輸入範圍錯誤，請重新輸入");
-                        modalTitle.innerHTML =`錯誤訊息`;
-                        modalBody.innerHTML = `輸入範圍錯誤，請重新輸入`;  
-                       
-                        modalBtn2.addEventListener("click", function () {                   
-                });                      
-                        myModal.show();    
-                        
-                    }
-                    else if (guessNum < answerNum && guessNum > min) {
-                        min = guessNum;
-                        rangeText.innerHTML = `${min}~${max}`;
-                    }
-                    else if (guessNum > answerNum && guessNum < max) {
-                        max = guessNum;
-                        rangeText.innerHTML = `${min}~${max}`;
-                    }
-                    else if (guessNum === answerNum) {
+    const myModal = new bootstrap.Modal("#myModal", {
+      keyboard: false,
+    });
+    // myBtn.addEventListener('click', () => {
+    //  myModal.show();
+    //  })
 
-                        console.log(`恭喜猜中,答案是數字${answerNum}`);
-                        modalTitle.innerHTML =`恭喜猜中`;
-                        modalBody.innerHTML = `答案是數字${answerNum}`                        
-                        myModal.show();;
-                        rangeText.innerHTML =`${answerNum}`;
-                    }
-                    inputText.innerHTML =`` ;
-                   
-                    
-                });
-                
-                
-                const modalTitle= document.querySelector(".modalTitle")
-                const modalBody = document.querySelector(".modalBody")
-                const modalBtn1 = document.querySelector(".modalBtn1")
-                const modalBtn2 = document.querySelector(".modalBtn2")  
-                
-                
-                
-               
-                const myModal = new bootstrap.Modal('#myModal', {
-                                keyboard: false
-                          })
-                // myBtn.addEventListener('click', () => {
-                //  myModal.show();
-                //  })
-                
-                
+    console.dir(inputText.textContent);
+    // document.querySelector("inputBox").addEventListener("click", function (e) {
+    //     console.log(e);
 
+    //     // document.querySelector(".output").textContent=`你按下了${e.key}`;
+    //     document.querySelector(".output").textContent = v;
+    // })
 
-                console.dir(inputText.textContent);
-                // document.querySelector("inputBox").addEventListener("click", function (e) {
-                //     console.log(e);
-                    
-                //     // document.querySelector(".output").textContent=`你按下了${e.key}`;
-                //     document.querySelector(".output").textContent = v;
-                // })
-
-                // if(guessNum <= min && guessNum >= max){
-                //     console.log("輸入範圍錯誤請重新輸入")
-                // }
-                // else if(guessNum < answerNum && guessNum >min){
-                //     min=guessNum;
-                // }
-                // else if(guessNum > answerNum && guessNum <max){
-                //     max=guessNum;
-                // }
-                // else if(guessNum === answerNum){
-                //     console.log(`恭喜猜中,答案是數字${answerNum}`);
-                // }
-
-        </script>
-
-    
+    // if(guessNum <= min && guessNum >= max){
+    //     console.log("輸入範圍錯誤請重新輸入")
+    // }
+    // else if(guessNum < answerNum && guessNum >min){
+    //     min=guessNum;
+    // }
+    // else if(guessNum > answerNum && guessNum <max){
+    //     max=guessNum;
+    // }
+    // else if(guessNum === answerNum){
+    //     console.log(`恭喜猜中,答案是數字${answerNum}`);
+    // }
+  </script>
 </body>
 
 </html>

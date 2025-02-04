@@ -211,6 +211,9 @@ header .dropdown-toggle::after {
   padding: 10px;
   margin: 80px 20px;
 }
+.formula-container .bookSpace i{
+  font-size: 30px;  
+}
 .formula-container .bookSpace .card{
  border: 0;
 }
