@@ -1,594 +1,580 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/guessNumContainer.css">
-    <link rel="stylesheet" href="./css/guessNumCard.css">
-    <link rel="stylesheet" href="./css/guessNumButton.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/guessNumContainer.css" />
+    <link rel="stylesheet" href="./css/guessNumCard.css" />
+    <link rel="stylesheet" href="./css/guessNumButton.css" />
     <style type="text/css">
-        .cardBox {
-            width: 100%;
-        }
+      .cardBox {
+        width: 100%;
+      }
 
-        .inputGroup {
-            font-family: 'Segoe UI', sans-serif;
-            margin: auto;
-            margin-top: 1em;
-            margin-bottom: 1em;
-            max-width: 80%;
-            position: relative;
-        }
+      .inputGroup {
+        font-family: "Segoe UI", sans-serif;
+        margin: auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        max-width: 80%;
+        position: relative;
+      }
 
-        .inputGroup input {
-            font-size: 100%;
-            padding: 0.8em;
-            outline: none;
-            border: 2px solid rgb(200, 200, 200);
-            background-color: transparent;
-            border-radius: 20px;
-            width: 100%;
-            color: white;
-        }
+      .inputGroup input {
+        font-size: 100%;
+        padding: 0.8em;
+        outline: none;
+        border: 2px solid rgb(200, 200, 200);
+        background-color: transparent;
+        border-radius: 20px;
+        width: 100%;
+        color: white;
+      }
 
-        .inputGroup label {
-            font-size: 100%;
-            position: absolute;
-            left: 0;
-            padding: 0.8em;
-            margin-left: 0.5em;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            color: rgb(100, 100, 100);
+      .inputGroup label {
+        font-size: 100%;
+        position: absolute;
+        left: 0;
+        padding: 0.8em;
+        margin-left: 0.5em;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        color: rgb(100, 100, 100);
+      }
 
-        }
+      .inputGroup :is(input:focus, input:valid) ~ label {
+        transform: translateY(-50%) scale(0.5);
+        margin: 0em;
+        margin-left: 0.5em;
+        padding: 0.2em;
+        background-color: #1b233d;
+      }
 
-        .inputGroup :is(input:focus, input:valid)~label {
-            transform: translateY(-50%) scale(.5);
-            margin: 0em;
-            margin-left: 0.5em;
-            padding: 0.2em;
-            background-color: #1b233d;
-        }
+      .inputGroup :is(input:focus, input:valid) {
+        border-color: rgb(150, 150, 200);
+      }
 
-        .inputGroup :is(input:focus, input:valid) {
-            border-color: rgb(150, 150, 200);
-        }
+      .numBtnBox {
+        display: flex;
+        width: 80%;
+        flex-wrap: wrap;
+        margin: auto;
+        justify-content: center;
+      }
 
-        .numBtnBox {
-            display: flex;
-            width: 80%;
-            flex-wrap: wrap;
-            margin: auto;
-            justify-content: center;
-        }
+      .numBtnBox .calculateBtn {
+        display: none;
+        background-color: white;
+        color: aqua;
+        padding: 100px;
+      }
 
-        .numBtnBox .calculateBtn {
-            display: none;
-            background-color: white;
-            color: aqua;
-            padding: 100px;
-        }
+      .numBtnBox button {
+        width: 26%;
+      }
 
-        .numBtnBox button {
-            width: 26%;
+      .showjudge {
+        height: 90%;
+        width: 100%;
+        padding: 20px;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* background-color: transparent; */
+      }
 
+      .showjudge li {
+        border-radius: 8px;
+        width: 100%;
+        list-style: none;
+        /* padding: 3px 0; */
+        margin-top: 3px;
+        /* height: 30px; */
+        background-color: white;
+      }
 
-        }
+      .showjudge span {
+        display: inline-block;
+        border-radius: 8px;
+        background-color: red;
+        margin-right: 10px;
+        padding: 3px;
+        /* margin-top: 10px; */
+        list-style: none;
+        font-size: 16px;
+        line-height: 30px;
+        color: white;
+        height: 100%;
+      }
 
-        .showjudge {
-            height: 90%;
-            width: 100%;
-            padding: 20px;
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* background-color: transparent; */
-        }
-
-        .showjudge li {
-            border-radius: 8px;
-            width: 100%;
-            list-style: none;
-            /* padding: 3px 0; */
-            margin-top: 3px;
-            /* height: 30px; */
-            background-color: white;
-        }
-
-        .showjudge span {
-            display: inline-block;
-            border-radius: 8px;
-            background-color: red;
-            margin-right: 10px;
-            padding: 3px;
-            /* margin-top: 10px; */
-            list-style: none;
-            font-size: 16px;
-            line-height: 30px;
-            color: white;
-            height: 100%;
-
-
-        }
-
-        .background_pic {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
+      .background_pic {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="mycontainer">
-        <img src="1A2Bbackground_pic.jpg" class="background_pic" alt="">
-        <div class="cardBox">
-            <div class="card">
-                <div class="bottom-section">
-                    <span class="title">猜數字遊戲</span>
-                    <div class="inputGroup">
-                        <input id="inputText" type="text" required="" autocomplete="off" oninput="limitInput(this)">
-                        <label for="name">請輸入數字...</label>
-                    </div>
-                    <div class="numBtnBox">
-                        <button>
-                            <span class="numBtn" data-val="7">7</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="8">8</span>
-                        </button>
-                        <button>
-                            <span class="numBtn " data-val="9">9</span>
-                        </button>
+      <img src="1A2Bbackground_pic.jpg" class="background_pic" alt="" />
+      <div class="cardBox">
+        <div class="card">
+          <div class="bottom-section">
+            <span class="title">猜數字遊戲</span>
+            <div class="inputGroup">
+              <input
+                id="inputText"
+                type="text"
+                required=""
+                autocomplete="off"
+                oninput="limitInput(this)"
+              />
+              <label for="name">請輸入數字...</label>
+            </div>
+            <div class="numBtnBox">
+              <button>
+                <span class="numBtn" data-val="7">7</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="8">8</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="9">9</span>
+              </button>
 
+              <button class="calculateBtn">
+                <span class=" ">/</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="4">4</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="5">5</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="6">6</span>
+              </button>
 
-                        <button class="calculateBtn">
-                            <span class=" ">/</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="4">4</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="5">5</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="6">6</span>
-                        </button>
+              <button class="calculateBtn">
+                <span class=" ">*</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="1">1</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="2">2</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="3">3</span>
+              </button>
 
-                        <button class="calculateBtn">
-                            <span class=" ">*</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="1">1</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="2">2</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="3">3</span>
-                        </button>
+              <button class="calculateBtn">
+                <span class=" ">-</span>
+              </button>
+              <button>
+                <span class="revokeBtn">←</span>
+              </button>
+              <button>
+                <span class="numBtn" data-val="0">0</span>
+              </button>
+              <button class="">
+                <span class="enterBtn">=</span>
+              </button>
+              <button class="calculateBtn">
+                <span class=" ">+</span>
+              </button>
+            </div>
 
-                        <button class="calculateBtn">
-                            <span class=" ">-</span>
-                        </button>
-                        <button>
-                            <span class="revokeBtn">←</span>
-                        </button>
-                        <button>
-                            <span class="numBtn" data-val="0">0</span>
-                        </button>
-                        <button class="">
-                            <span class="enterBtn ">=</span>
-                        </button>
-                        <button class="calculateBtn">
-                            <span class=" ">+</span>
-                        </button>
-                    </div>
+            <div class="row row1">
+              <div class="item">
+                <button class="toolsBtn restartBtn">
+                  RESTART
+                  <div id="clip">
+                    <div id="leftTop" class="corner"></div>
+                    <div id="rightBottom" class="corner"></div>
+                    <div id="rightTop" class="corner"></div>
+                    <div id="leftBottom" class="corner"></div>
+                  </div>
+                  <span id="rightArrow" class="arrow"></span>
+                  <span id="leftArrow" class="arrow"></span>
+                </button>
+              </div>
+              <div class="item">
+                <button class="toolsBtn startBtn">
+                  START
+                  <div id="clip">
+                    <div id="leftTop" class="corner"></div>
+                    <div id="rightBottom" class="corner"></div>
+                    <div id="rightTop" class="corner"></div>
+                    <div id="leftBottom" class="corner"></div>
+                  </div>
+                  <span id="rightArrow" class="arrow"></span>
+                  <span id="leftArrow" class="arrow"></span>
+                </button>
+              </div>
+              <div class="item">
+                <button class="toolsBtn showAnsBtn">
+                  SHOW ANSWER
+                  <div id="clip">
+                    <div id="leftTop" class="corner"></div>
+                    <div id="rightBottom" class="corner"></div>
+                    <div id="rightTop" class="corner"></div>
+                    <div id="leftBottom" class="corner"></div>
+                  </div>
+                  <span id="rightArrow" class="arrow"></span>
+                  <span id="leftArrow" class="arrow"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="top-section">
+            <div class="border"></div>
 
-                    <div class="row row1">
-                        <div class="item">
-                            <button class="toolsBtn restartBtn"> RESTART
-                                <div id="clip">
-                                    <div id="leftTop" class="corner"></div>
-                                    <div id="rightBottom" class="corner"></div>
-                                    <div id="rightTop" class="corner"></div>
-                                    <div id="leftBottom" class="corner"></div>
-                                </div>
-                                <span id="rightArrow" class="arrow"></span>
-                                <span id="leftArrow" class="arrow"></span>
-                            </button>
-                        </div>
-                        <div class="item">
-                            <button class="toolsBtn startBtn"> START
-                                <div id="clip">
-                                    <div id="leftTop" class="corner"></div>
-                                    <div id="rightBottom" class="corner"></div>
-                                    <div id="rightTop" class="corner"></div>
-                                    <div id="leftBottom" class="corner"></div>
-                                </div>
-                                <span id="rightArrow" class="arrow"></span>
-                                <span id="leftArrow" class="arrow"></span>
-                            </button>
-
-                        </div>
-                        <div class="item">
-                            <button class="toolsBtn showAnsBtn"> SHOW ANSWER
-                                <div id="clip">
-                                    <div id="leftTop" class="corner"></div>
-                                    <div id="rightBottom" class="corner"></div>
-                                    <div id="rightTop" class="corner"></div>
-                                    <div id="leftBottom" class="corner"></div>
-                                </div>
-                                <span id="rightArrow" class="arrow"></span>
-                                <span id="leftArrow" class="arrow"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-section">
-                    <div class="border"></div>
-
-                    <div class="icons">
-                        <div class="logo">
-                            猜數字遊戲
-                        </div>
-                        <div class="social-media">
-
-
-                            <!-- <div class="checkbox">
+            <div class="icons">
+              <div class="logo">猜數字遊戲</div>
+              <div class="social-media">
+                <!-- <div class="checkbox">
                                 <input id="GuessNumGame" class="checkbox__input" type="checkbox">
                                 <label for="GuessNumGame" class="checkbox__label">
                                     <span class="checkbox__custom"></span>
                                     猜數字遊戲
                                 </label>
                             </div> -->
-                            <!-- <div class="checkbox">
+                <!-- <div class="checkbox">
                                 <input id="FinalGame" class="checkbox__input" type="checkbox">
                                 <label for="FinalGame" class="checkbox__label">
                                     <span class="checkbox__custom"></span>
                                     終極密碼
                                 </label>
                             </div> -->
-                        </div>
-
-
-                    </div>
-                    <ul class="showjudge">
-                        <!-- <li><span>1A2B</span>1234</li>
+              </div>
+            </div>
+            <ul class="showjudge">
+              <!-- <li><span>1A2B</span>1234</li>
                         <li><span>1A2B</span>1234</li>
                         <li><span>1A2B</span>1234</li> -->
-
-                    </ul>
-
-                </div>
-            </div>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="form-container modal-content">
-                <div class="form ">
-                    <span class="heading modalTitle" id="exampleModalLabel">Title</span>
-                    <span class="modalText">Message....</span>
-                    <div class="button-container">
-                        <div class="send-button checkBtn">確認</div>
-                        <div class="reset-button-container closeBtn">
-                            <div class="reset-button closeBtn" id="reset-btn" data-bs-dismiss="modal"
-                                aria-label="Close">關閉
-                            </div>
-                        </div>
-                    </div>
+    <div
+      class="modal"
+      id="myModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="form-container modal-content">
+          <div class="form">
+            <span class="heading modalTitle" id="exampleModalLabel">Title</span>
+            <span class="modalText">Message....</span>
+            <div class="button-container">
+              <div class="send-button checkBtn">確認</div>
+              <div class="reset-button-container closeBtn">
+                <div
+                  class="reset-button closeBtn"
+                  id="reset-btn"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  關閉
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
 
     <script type="text/javascript">
-        let answerNumArr = [];
-        let guessNumArr = [];
-        let inputText = document.getElementById("inputText")
-        const showjudge = document.querySelector(".showjudge")
-        const enterBtn = document.querySelector(".enterBtn")
-        const revokeBtn = document.querySelector(".revokeBtn")
-        const restartBtn = document.querySelector(".restartBtn")
-        const startBtn = document.querySelector(".startBtn")
-        const showAnsBtn = document.querySelector(".showAnsBtn")
+      let answerNumArr = [];
+      let guessNumArr = [];
+      let inputText = document.getElementById("inputText");
+      const showjudge = document.querySelector(".showjudge");
+      const enterBtn = document.querySelector(".enterBtn");
+      const revokeBtn = document.querySelector(".revokeBtn");
+      const restartBtn = document.querySelector(".restartBtn");
+      const startBtn = document.querySelector(".startBtn");
+      const showAnsBtn = document.querySelector(".showAnsBtn");
 
-        //--Modal--設定
-        const myModal = new bootstrap.Modal('#myModal', {
-            keyboard: false
-        })
-        const modal = document.querySelector(".modal")
-        const closeBtn = document.querySelector(".closeBtn")
-        const checkBtn = document.querySelector(".checkBtn")
-        const modalTitle = document.querySelector(".modalTitle")
-        const modalText = document.querySelector(".modalText")
-        let isRestart = false;
-        checkBtn.addEventListener("click", () => {
-            myModal.hide();
-            if (isRestart) {
-                StartGame();
+      //--Modal--設定
+      const myModal = new bootstrap.Modal("#myModal", {
+        keyboard: false,
+      });
+      const modal = document.querySelector(".modal");
+      const closeBtn = document.querySelector(".closeBtn");
+      const checkBtn = document.querySelector(".checkBtn");
+      const modalTitle = document.querySelector(".modalTitle");
+      const modalText = document.querySelector(".modalText");
+      let isRestart = false;
+      checkBtn.addEventListener("click", () => {
+        myModal.hide();
+        if (isRestart) {
+          StartGame();
 
-                console.log("裡面的checkBtn");
-                checkBtn.textContent = "確認"
-            }
-            isRestart = false;
-        })
-        // myModal.show();
-
-
-        //--Random--產生answerArr
-
-        function getRandomInt(max) {
-            return Math.floor(Math.random() * max);
+          console.log("裡面的checkBtn");
+          checkBtn.textContent = "確認";
         }
-        let isStart = false;
-        function StartGame() {
-            answerNumArr = [];
-            while (answerNumArr.length < 4) {
-                let num = getRandomInt(10);
-                if (!answerNumArr.includes(num)) {
-                    answerNumArr.push(num);
-                }
-            }
-            showjudge.innerHTML = "";
-            checkBtn.textContent = "確認"
-            isStart = true;
-            console.log(answerNumArr);
-            console.log(isStart);
+        isRestart = false;
+      });
+      // myModal.show();
+
+      //--Random--產生answerArr
+
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+      let isStart = false;
+      function StartGame() {
+        answerNumArr = [];
+        while (answerNumArr.length < 4) {
+          let num = getRandomInt(10);
+          if (!answerNumArr.includes(num)) {
+            answerNumArr.push(num);
+          }
         }
+        showjudge.innerHTML = "";
+        checkBtn.textContent = "確認";
+        isStart = true;
+        console.log(answerNumArr);
         console.log(isStart);
+      }
+      console.log(isStart);
 
-        //--判斷按開始遊戲了沒-產生answerArr
+      //--判斷按開始遊戲了沒-產生answerArr
 
-        function IsStart() {
-
-            if (!isStart) {
-                myModal.show();
-                modalTitle.innerHTML = "遊戲尚未開始";
-                modalText.innerHTML = "請先開始遊戲"
-                inputText.textContent = ""
-            }
+      function IsStart() {
+        if (!isStart) {
+          myModal.show();
+          modalTitle.innerHTML = "遊戲尚未開始";
+          modalText.innerHTML = "請先開始遊戲";
+          inputText.textContent = "";
         }
+      }
 
+      //--判斷數字的規則--
 
-
-        //--判斷數字的規則--
-
-        function handleNumClick(num) {
-            guessNumArr = inputText.value.split('');
-            if (!(guessNumArr.length < 4)) {
-                myModal.show();
-                modalTitle.innerHTML = "輸入錯誤";
-                modalText.innerHTML = "只能輸入4個數字喲~~"
-            } else if (guessNumArr.includes(num.dataset.val)) {
-                myModal.show();
-                modalTitle.innerHTML = "輸入錯誤";
-                modalText.innerHTML = "請輸入4個不同的數字!!!"
-            } else {
-                inputText.value += num.dataset.val;
-                guessNumArr.push(num.dataset.val);
-            }
+      function handleNumClick(num) {
+        guessNumArr = inputText.value.split("");
+        if (!(guessNumArr.length < 4)) {
+          myModal.show();
+          modalTitle.innerHTML = "輸入錯誤";
+          modalText.innerHTML = "只能輸入4個數字喲~~";
+        } else if (guessNumArr.includes(num.dataset.val)) {
+          myModal.show();
+          modalTitle.innerHTML = "輸入錯誤";
+          modalText.innerHTML = "請輸入4個不同的數字!!!";
+        } else {
+          inputText.value += num.dataset.val;
+          guessNumArr.push(num.dataset.val);
         }
+      }
 
+      //--判斷答案AB的規則--
 
-        //--判斷答案AB的規則--
+      function handleCheckClick() {
+        const inputNum = inputText.value;
+        guessNumArr = inputNum.split("").map(Number);
 
-        function handleCheckClick() {
-            const inputNum = inputText.value;
-            guessNumArr = inputNum.split('').map(Number);
-
-            if (guessNumArr.length === 4) {
-                console.log(guessNumArr);
-                console.log(answerNumArr);
-                let a = 0;
-                let b = 0;
-                for (let i = 0; i < answerNumArr.length; i++) {
-                    if (guessNumArr[i] === answerNumArr[i]) {
-                        a++;
-                    } else if (answerNumArr.includes(guessNumArr[i])) {
-                        b++;
-                    }
-                }
-                console.log(`${a}A${b}B`);
-                showjudge.innerHTML += `<li><span>${a}A${b}B</span>${guessNumArr.join("")}</li>`
-                inputText.value = "";
-                if (a == 4) {
-
-                    checkBtn.textContent = "另啟新局"
-                    modalTitle.innerHTML = "恭喜猜中";
-                    modalText.innerHTML = `答案是 ${answerNumArr.join("")}`;
-                    myModal.show();
-                    isRestart = true;
-
-                }
+        if (guessNumArr.length === 4) {
+          console.log(guessNumArr);
+          console.log(answerNumArr);
+          let a = 0;
+          let b = 0;
+          for (let i = 0; i < answerNumArr.length; i++) {
+            if (guessNumArr[i] === answerNumArr[i]) {
+              a++;
+            } else if (answerNumArr.includes(guessNumArr[i])) {
+              b++;
             }
-            // else {
-            //     myModal.show();
-            //     modalTitle.innerHTML = "輸入錯誤";
-            //     modalText.innerHTML = `要輸入"4個"不同的數字喲~~`;
-            // }
-            // inputText.value = "";
-        }
-
-        //--移除最後一個數字的方法--
-
-        function removeLastNum() {
-            const inputNum = inputText.value;
-            guessNumArr = inputNum.split('');
-            guessNumArr.pop();
-            inputText.value = guessNumArr.join('');
-        }
-
-
-
-
-        inputText.addEventListener('keyup', function (event) {
-
-            const key = parseInt(event.key);
-
-            if (event.key === 'Enter') {
-                if (!isStart) {
-                    IsStart();
-                    return;
-                }
-                handleCheckClick();
-            }
-            else { }
-            // if (!parseInt(event.key)) {
-            //     myModal.show();
-            //     modalTitle.innerHTML = "輸入錯誤";
-            //     modalText.innerHTML = `請輸入"數字"喲~~`;
-            //     removeLastNum();
-            // } else if (!(guessNumArr.length < 4)) {
-            //     myModal.show();
-            //     modalTitle.innerHTML = "輸入錯誤";
-            //     modalText.innerHTML = "只能輸入4個數字喲~~"
-            //     removeLastNum();
-            // } else if (guessNumArr.includes(key)) {
-            //     removeLastNum();
-            //     myModal.show();
-            //     modalTitle.innerHTML = "輸入錯誤";
-            //     modalText.innerHTML = "請輸入4個不同的數字!!!"
-            // } else {
-            //     console.log("意想不到的例外");
-            // }
-            // guessNumArr = inputText.value.split('').map(Number);
-        })
-
-
-        //用鍵盤輸入的條件判斷的Fn
-
-        function limitInput(input) {
-
-            console.dir(input);
-            if (!isStart) {
-                IsStart();
-                inputText.value = "";
-                return;
-            }
-
-            const inputNum = inputText.value;
-            const inputArr = inputNum.split('');
-            const lastInput = inputArr.findLast((input) => input)
-            if (inputArr.length < guessNumArr.length) {
-                guessNumArr = inputText.value.split('');
-                return
-            };
-
-            // console.dir(input);
-            // console.log(inputNum);
-            // console.dir(inputNum);
-            // console.log(inputArr);
-            // if (inputNum == "") {
-            //     return
-            // }
-            console.log(guessNumArr);
-            if (!parseInt(lastInput)) {
-                myModal.show();
-                modalTitle.innerHTML = "輸入錯誤";
-                modalText.innerHTML = `請輸入"數字"喲~~`;
-                removeLastNum();
-            } else if (!(guessNumArr.length < 4)) {
-                myModal.show();
-                modalTitle.innerHTML = "輸入錯誤";
-                modalText.innerHTML = "只能輸入4個數字喲~~"
-                removeLastNum();
-                // 
-            } else if (guessNumArr.includes(lastInput) && inputArr.length > guessNumArr.length) {
-                removeLastNum();
-                myModal.show();
-                modalTitle.innerHTML = "輸入錯誤";
-                modalText.innerHTML = "請輸入4個不同的數字!!!"
-            } else {
-                console.log("意想不到的例外");
-            }
-            guessNumArr = inputText.value.split('');
-            // guessNumArr.push(lastInput);
-
-        }
-
-
-
-
-        //畫面數字按鈕掛事件&輸入規則
-        let numBtn = document.querySelectorAll(".numBtn")
-        numBtn.forEach((num) => {
-            num.addEventListener("click", () => {
-                console.log(isStart);
-                if (!isStart) {
-                    IsStart();
-                    return;
-                }
-
-                handleNumClick(num);
-            })
-        })
-
-
-
-        enterBtn.addEventListener("click", () => {
-            if (!isStart) {
-                IsStart();
-                return;
-            }
-            handleCheckClick();
-
-        })
-
-        revokeBtn.addEventListener("click", () => {
-
-            removeLastNum()
-        })
-
-        restartBtn.addEventListener("click", () => {
-            console.log("這是restart鍵");
-            if (!isStart) {
-                IsStart();
-                return;
-            }
+          }
+          console.log(`${a}A${b}B`);
+          showjudge.innerHTML += `<li><span>${a}A${b}B</span>${guessNumArr.join(
+            ""
+          )}</li>`;
+          inputText.value = "";
+          if (a == 4) {
+            checkBtn.textContent = "另啟新局";
+            modalTitle.innerHTML = "恭喜猜中";
+            modalText.innerHTML = `答案是 ${answerNumArr.join("")}`;
             myModal.show();
-            modalTitle.innerHTML = "重新開始";
-            modalText.innerHTML = `數字會重新,確定要重新開始???`;
             isRestart = true;
-        })
+          }
+        }
+        // else {
+        //     myModal.show();
+        //     modalTitle.innerHTML = "輸入錯誤";
+        //     modalText.innerHTML = `要輸入"4個"不同的數字喲~~`;
+        // }
+        // inputText.value = "";
+      }
 
-        startBtn.addEventListener("click", () => {
-            StartGame();
+      //--移除最後一個數字的方法--
 
-        })
+      function removeLastNum() {
+        const inputNum = inputText.value;
+        guessNumArr = inputNum.split("");
+        guessNumArr.pop();
+        inputText.value = guessNumArr.join("");
+      }
 
-        showAnsBtn.addEventListener("click", () => {
-            if (!isStart) {
-                IsStart();
-                return;
-            }
-            myModal.show();
-            modalTitle.innerHTML = "偷看答案";
-            modalText.innerHTML = `答案是 ${answerNumArr.join("")} !!!`;
-        })
+      inputText.addEventListener("keyup", function (event) {
+        const key = parseInt(event.key);
 
+        if (event.key === "Enter") {
+          if (!isStart) {
+            IsStart();
+            return;
+          }
+          handleCheckClick();
+        } else {
+        }
+        // if (!parseInt(event.key)) {
+        //     myModal.show();
+        //     modalTitle.innerHTML = "輸入錯誤";
+        //     modalText.innerHTML = `請輸入"數字"喲~~`;
+        //     removeLastNum();
+        // } else if (!(guessNumArr.length < 4)) {
+        //     myModal.show();
+        //     modalTitle.innerHTML = "輸入錯誤";
+        //     modalText.innerHTML = "只能輸入4個數字喲~~"
+        //     removeLastNum();
+        // } else if (guessNumArr.includes(key)) {
+        //     removeLastNum();
+        //     myModal.show();
+        //     modalTitle.innerHTML = "輸入錯誤";
+        //     modalText.innerHTML = "請輸入4個不同的數字!!!"
+        // } else {
+        //     console.log("意想不到的例外");
+        // }
+        // guessNumArr = inputText.value.split('').map(Number);
+      });
+
+      //用鍵盤輸入的條件判斷的Fn
+
+      function limitInput(input) {
+        console.dir(input);
+        if (!isStart) {
+          IsStart();
+          inputText.value = "";
+          return;
+        }
+
+        const inputNum = inputText.value;
+        const inputArr = inputNum.split("");
+        const lastInput = inputArr.findLast((input) => input);
+        if (inputArr.length < guessNumArr.length) {
+          guessNumArr = inputText.value.split("");
+          return;
+        }
+
+        // console.dir(input);
+        // console.log(inputNum);
+        // console.dir(inputNum);
+        // console.log(inputArr);
+        // if (inputNum == "") {
+        //     return
+        // }
+        console.log(guessNumArr);
+        if (!parseInt(lastInput)) {
+          myModal.show();
+          modalTitle.innerHTML = "輸入錯誤";
+          modalText.innerHTML = `請輸入"數字"喲~~`;
+          removeLastNum();
+        } else if (!(guessNumArr.length < 4)) {
+          myModal.show();
+          modalTitle.innerHTML = "輸入錯誤";
+          modalText.innerHTML = "只能輸入4個數字喲~~";
+          removeLastNum();
+          //
+        } else if (
+          guessNumArr.includes(lastInput) &&
+          inputArr.length > guessNumArr.length
+        ) {
+          removeLastNum();
+          myModal.show();
+          modalTitle.innerHTML = "輸入錯誤";
+          modalText.innerHTML = "請輸入4個不同的數字!!!";
+        } else {
+          console.log("意想不到的例外");
+        }
+        guessNumArr = inputText.value.split("");
+        // guessNumArr.push(lastInput);
+      }
+
+      //畫面數字按鈕掛事件&輸入規則
+      let numBtn = document.querySelectorAll(".numBtn");
+      numBtn.forEach((num) => {
+        num.addEventListener("click", () => {
+          console.log(isStart);
+          if (!isStart) {
+            IsStart();
+            return;
+          }
+
+          handleNumClick(num);
+        });
+      });
+
+      enterBtn.addEventListener("click", () => {
+        if (!isStart) {
+          IsStart();
+          return;
+        }
+        handleCheckClick();
+      });
+
+      revokeBtn.addEventListener("click", () => {
+        removeLastNum();
+      });
+
+      restartBtn.addEventListener("click", () => {
+        console.log("這是restart鍵");
+        if (!isStart) {
+          IsStart();
+          return;
+        }
+        myModal.show();
+        modalTitle.innerHTML = "重新開始";
+        modalText.innerHTML = `數字會重新,確定要重新開始???`;
+        isRestart = true;
+      });
+
+      startBtn.addEventListener("click", () => {
+        StartGame();
+      });
+
+      showAnsBtn.addEventListener("click", () => {
+        if (!isStart) {
+          IsStart();
+          return;
+        }
+        myModal.show();
+        modalTitle.innerHTML = "偷看答案";
+        modalText.innerHTML = `答案是 ${answerNumArr.join("")} !!!`;
+      });
     </script>
-
-
-
-</body>
-
+  </body>
 </html>

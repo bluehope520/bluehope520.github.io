@@ -1,0 +1,81 @@
+.row,.row>*{
+  padding: 0;
+  margin: 0;
+}
+.head.container {
+  margin: auto;
+  margin-top: 30px;
+  color: white;
+  justify-content:space-around;
+  
+}
+.head .head-left {
+  background-color: #c2633d; 
+  font-size: 25px; 
+}
+.head-right .img-box {
+  width: 100%;
+  overflow: hidden;
+ 
+}
+#prevMonthBtn,#nextMonthBtn,#todayBtn
+{
+  display: block;
+  color: white;
+}
+#prevMonthBtn:hover,#nextMonthBtn:hover,#todayBtn:hover
+{
+ background-color: yellow;
+  color: rgb(195, 45, 45);
+}
+.calendar,
+.head {
+  margin: auto;
+  max-width: 1200px;
+justify-content: center;
+}
+.calendar .weekday {
+  padding: 10px;
+  width: 14.285714%;
+  text-align: center;
+  border-bottom: 1px solid gainsboro;
+}
+.calendar .weekday span{
+  display: block;
+}
+.calendar .day {
+  height: 100px;
+  width: 14.285714%;
+  text-align: center;
+  border: 1px solid gainsboro;
+}
+/* ------------- */
+
+.date {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+ 
+}
+
+.number {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.year {
+  font-size: 1rem;
+
+}
+
+.month {
+  font-size: 1.5rem;
+  font-weight: bold;
+ 
+}
+
+.text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
