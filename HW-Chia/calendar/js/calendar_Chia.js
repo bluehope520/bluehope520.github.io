@@ -49,7 +49,7 @@ function updateCalendar() {
     const storageKey = dateKey;
     console.log(storageKey);
     const todoDiv = document.createElement("div");
-    todoDiv.style="text-align:start"
+    todoDiv.style = "text-align:start";
     //將todoDiv添加到dateDiv
     dateDiv.appendChild(todoDiv);
     const todoListInCalendar = getTodoListFromStorage();
@@ -59,21 +59,20 @@ function updateCalendar() {
       return localStorageItem ? JSON.parse(localStorageItem) : [];
     }
     function renderingTodoList() {
-        todoDiv.innerHTML += "";
-        todoListInCalendar.forEach((item, idx) => { 
-            if(idx<3)           
-            {todoDiv.innerHTML+=`．${item.content}<br>`}
-        })}
-        renderingTodoList();
-    
+      todoDiv.innerHTML += "";
+      todoListInCalendar.forEach((item, idx) => {
+        if (idx < 3) {
+          todoDiv.innerHTML += `．${item.content}<br>`;
+        }
+      });
+    }
+    renderingTodoList();
 
     // 新增點擊顯示 Modal事件
     dateDiv.addEventListener("click", () => {
       const modal = new bootstrap.Modal(
-        document.getElementById("create_todo_model")
+        document.getElementById("create_todo_modal")
       );
-      const exampleModalLabel = document.getElementById("exampleModalLabel");
-      exampleModalLabel.innerHTML = `${dateKey} 待辦事項`;
 
       //儲存事件
       const storageKey = dateKey;
@@ -107,13 +106,12 @@ function updateCalendar() {
 
       function saveTodoItem(todoItem) {
         todoList.push(todoItem);
+        todoList.sort((a, b) => {
+          const timeA = new Date(`1970/01/01 ${a.time}`);
+          const timeB = new Date(`1970/01/01 ${b.time}`);
+          return timeA - timeB; // 升序排序
+        });
         saveTodoListToStorage(todoList);
-      }
-
-      function remove(idx) {
-        todoList.splice(idx, 1);
-        saveTodoListToStorage(todoList);
-        renderingTodoList();
       }
 
       //渲染todo_list
@@ -179,7 +177,7 @@ function updateCalendar() {
           inputGroup.className = "input-group";
 
           // 創建輸入組文本
-          
+
           const inputGroupText = document.createElement("div");
           inputGroupText.className = "input-group-text";
 
@@ -280,6 +278,12 @@ function updateCalendar() {
           //隱藏編輯按鈕
           el.classList.add("d-none");
         }
+        
+        function remove(idx) {
+          todoList.splice(idx, 1);
+          saveTodoListToStorage(todoList);
+          renderingTodoList();
+        }
       }
       modal.show();
       renderingTodoList();
@@ -288,24 +292,24 @@ function updateCalendar() {
     calendarDays.appendChild(dateDiv);
   }
 }
-// 儲存事件邏輯
-document.getElementById("saveEventBtn").addEventListener("click", () => {
-  const eventInput = document.getElementById("eventInput");
-  const eventContent = eventInput.value.trim();
+// // 儲存事件邏輯
+// document.getElementById("saveEventBtn").addEventListener("click", () => {
+//   const eventInput = document.getElementById("eventInput");
+//   const eventContent = eventInput.value.trim();
 
-  if (eventContent && selectedDate) {
-    const events = JSON.parse(localStorage.getItem("calendarEvents")) || {};
-    events[selectedDate] = eventContent;
-    localStorage.setItem("calendarEvents", JSON.stringify(events));
-    updateCalendar();
+//   if (eventContent && selectedDate) {
+//     const events = JSON.parse(localStorage.getItem("calendarEvents")) || {};
+//     events[selectedDate] = eventContent;
+//     localStorage.setItem("calendarEvents", JSON.stringify(events));
+//     updateCalendar();
 
-    const modal = bootstrap.Modal.getInstance(
-      document.getElementById("eventModal")
-    );
-    modal.hide();
-    eventInput.value = "";
-  }
-});
+//     const modal = bootstrap.Modal.getInstance(
+//       document.getElementById("eventModal")
+//     );
+//     modal.hide();
+//     eventInput.value = "";
+//   }
+// });
 
 // 切換月份按鈕
 document.getElementById("prevMonthBtn").addEventListener("click", () => {
