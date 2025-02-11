@@ -80,8 +80,7 @@ function renderCalendar() {
     dateArea.appendChild(dateDom);
 
     //渲染storage in calendar
-    haveStorageItem = todo_Obj[dateKey];
-    console.log(todo_Obj[dateKey]);
+    haveStorageItem = todo_Obj[dateKey];   
     if (haveStorageItem) {
       const ul = document.createElement("ul");
       todo_Obj[dateKey].forEach((item, idx) => {
