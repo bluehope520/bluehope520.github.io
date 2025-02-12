@@ -11,7 +11,9 @@ const create_todo_modal = new bootstrap.Modal(
 const newTodo_modal = new bootstrap.Modal(
   document.getElementById("newTodo_modal")
 );
-
+const festivalForMonth = document.querySelector(".festivalForMonth");
+const headRight = document.querySelector(".head-right");
+const headLeft = document.querySelector(".head-left");
 let todo_Obj = {};
 let dateKeyfor;
 console.log(dateKeyfor);
@@ -53,7 +55,7 @@ function renderCalendar() {
   currentMonth.textContent = month + 1;
   currentYear.textContent = `民國${year - 1911}年`;
   currentMonthByEnglish.textContent = monthName;
-
+  updateCalendarTitle(month);
   //update dateArea
   const dateArea = document.getElementById("calendar-days");
   dateArea.innerHTML = ""; // 清空現有的日期格子
@@ -317,7 +319,7 @@ const NewTodo_date_input = document.getElementById("NewTodo_date_input");
 const NewTodo_time_input = document.getElementById("NewTodo_time_input");
 const newTodo_input = document.getElementById("newTodo_input");
 const create_NewTodo_Btn = document.getElementById("create_NewTodo_Btn");
-create_NewTodo_Btn.addEventListener("click", () => { 
+create_NewTodo_Btn.addEventListener("click", () => {
   if (
     NewTodo_date_input.value === "" ||
     NewTodo_time_input.value === "" ||
@@ -356,3 +358,80 @@ create_NewTodo_Btn.addEventListener("click", () => {
   renderModal(NewTodo_date_input.value);
   // console.log(NewTodo_date_input.value)
 });
+
+/*
+1.為新年做準備,大掃除買年貨做臘肉! c3633d
+2.與大自然的和諧相處,善用每一個得來不易的農產品。 9f815d
+3.生津止渴又是低熱量的好水果,健康水果的好選擇。 ffeabb
+4.桑樹從葉子到果實,每一個部位都對人體有好處,容易加工方便保存。 dddad5
+5.從加工油品到觀賞植物,從油桐花認識臺灣經濟改變的過程。 69a464
+6.艾草可趨吉避凶、遠離疾病,不只是包粽子的材料而已。c5705c
+7.夏天來一顆香甜多汁的水梨,加工蒸煮之後又是另一個美味甜點。b79f87
+8.蓮花又稱荷花,在表面有一層自潔層,是最愛乾淨的植物喔。c9e3b6
+9.與家人團圓的好時光,中秋節烤肉、月餅、柚子! 194e6e
+10.在小小的地瓜田裡挖呀挖,自己做的零食最健康。 c3d38c
+11.人類飛行夢想的起點,天空中的童年好光。 e9d7c1
+12.經過時光的推移和巧奪天工的手藝,呈現臺灣經濟的另一個盛況。 e5d6b5
+*/
+
+function updateCalendarTitle(Month) {
+  if (Month === 0) {
+    festivalForMonth.textContent = "為新年做準備,大掃除買年貨做臘肉!";
+    headRight.style.backgroundImage = "url('./pic/January.png')";
+    headLeft.style.backgroundColor = "#c3633d";
+  } else if (Month === 1) {
+    festivalForMonth.textContent =
+      "與大自然的和諧相處,善用每一個得來不易的農產品。";
+    headRight.style.backgroundImage = "url('./pic/February.png')";
+    headLeft.style.backgroundColor = "#9f815d";
+  } else if (Month === 2) {
+    festivalForMonth.textContent =
+      "生津止渴又是低熱量的好水果,健康水果的好選擇。";
+    headRight.style.backgroundImage = "url('./pic/March.png')";
+    headLeft.style.backgroundColor = "#ffeabb";
+  } else if (Month === 3) {
+    festivalForMonth.textContent =
+      "桑樹從葉子到果實,每一個部位都對人體有好處,容易加工方便保存。";
+    headRight.style.backgroundImage = "url('./pic/April.png')";
+    headLeft.style.backgroundColor = "#dddad5";
+  } else if (Month === 4) {
+    festivalForMonth.textContent =
+      "從加工油品到觀賞植物,從油桐花認識臺灣經濟改變的過程。";
+    headRight.style.backgroundImage = "url('./pic/May.png')";
+    headLeft.style.backgroundColor = "#69a464";
+  } else if (Month === 5) {
+    festivalForMonth.textContent =
+      "艾草可趨吉避凶、遠離疾病,不只是包粽子的材料而已。";
+    headRight.style.backgroundImage = "url('./pic/June.png')";
+    headLeft.style.backgroundColor = "#c5705c";
+  } else if (Month === 6) {
+    festivalForMonth.textContent =
+      "夏天來一顆香甜多汁的水梨,加工蒸煮之後又是另一個美味甜點。";
+    headRight.style.backgroundImage = "url('./pic/July.png')";
+    headLeft.style.backgroundColor = "#b79f87";
+  } else if (Month === 7) {
+    festivalForMonth.textContent =
+      "蓮花又稱荷花,在表面有一層自潔層,是最愛乾淨的植物喔。";
+    headRight.style.backgroundImage = "url('./pic/August.png')";
+    headLeft.style.backgroundColor = "#c9e3b6";
+  } else if (Month === 8) {
+    festivalForMonth.textContent =
+      "與家人團圓的好時光,中秋節烤肉、月餅、柚子! ";
+    headRight.style.backgroundImage = "url('./pic/September.png')";
+    headLeft.style.backgroundColor = "#194e6e";
+  } else if (Month === 9) {
+    festivalForMonth.textContent =
+      "在小小的地瓜田裡挖呀挖,自己做的零食最健康。 ";
+    headRight.style.backgroundImage = "url('./pic/October.png')";
+    headLeft.style.backgroundColor = "#c3d38c";
+  } else if (Month === 10) {
+    festivalForMonth.textContent = "人類飛行夢想的起點,天空中的童年好光。 ";
+    headRight.style.backgroundImage = "url('./pic/November.png')";
+    headLeft.style.backgroundColor = "#e9d7c1";
+  } else if (Month === 11) {
+    festivalForMonth.textContent =
+      "經過時光的推移和巧奪天工的手藝,呈現臺灣經濟的另一個盛況。 ";
+    headRight.style.backgroundImage = "url('./pic/December.png')";
+    headLeft.style.backgroundColor = "#e5d6b5";
+  }
+}
