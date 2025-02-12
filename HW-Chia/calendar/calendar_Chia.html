@@ -107,7 +107,7 @@
     </section>
 
     <!-- Button trigger modal -->
-    <!-- New Todo Modal -->
+    <!-- New_Todo_Modal -->
     <div
       class="modal fade"
       id="newTodo_modal"
@@ -118,10 +118,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5">新增事項</h1>
-            
-            
-
+            <h1 class="modal-title fs-5">新增日程</h1>
             <button
               type="button"
               class="btn-close"
@@ -131,37 +128,39 @@
           </div>
           <div class="modal-body">
             <div class="input-group mb-3">
-              <label for="date_input" class="form-label">日期</label>
-              <input
-              type="date"
-              class="form-control"
-              id="NewDate_input"
-              aria-describedby="datetimeHelp"
-            />
-            <div id="datetimeHelp" class="form-text">請選擇日期.</div>
-              <div class="input-group-text">
+              <div class="col-12">
+                <label for="date_input" class="form-label">日期 </label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="NewTodo_date_input"
+                  aria-describedby="datetimeHelp"
+                />
+              </div>
+              <!-- <div id="datetimeHelp" class="form-text">請選擇日期.</div> -->
+              <div class="col-12">
+                <label for="todo_time"class="form-label"></label>
                 <input
                   type="time"
-                  id="NewTodo_time"
+                  class="form-control"
+                  id="NewTodo_time_input"
                   name="todo_time"
-                  value="00:00"
+                  value=""
                 />
-                <label for="todo_time"></label>
+                
               </div>
-              <input
-                id="newTodo_input"
+              <div class="col-12">
+                <label for="newTodo_input"class="form-label"></label>
+                <textarea id="newTodo_input"
                 type="text"
                 class="form-control"
-                placeholder="請輸入待辦事項..."
-              />
-              <button class="btn btn-primary" type="button" id="">
-                新增
-              </button>
-            </div>          
-           
-           
+                placeholder="請輸入待辦事項..."></textarea>
+              </div>             
+            </div>            
           </div>
-          <div class="modal-footer"></div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="button" id="create_NewTodo_Btn">新增</button>
+          </div>
         </div>
       </div>
     </div>

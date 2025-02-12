@@ -5,7 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //設定
-const modal = new bootstrap.Modal(document.getElementById("create_todo_modal"));
+const create_todo_modal = new bootstrap.Modal(
+  document.getElementById("create_todo_modal")
+);
+const newTodo_modal = new bootstrap.Modal(
+  document.getElementById("newTodo_modal")
+);
+
 let todo_Obj = {};
 let dateKeyfor;
 console.log(dateKeyfor);
@@ -80,7 +86,7 @@ function renderCalendar() {
     dateArea.appendChild(dateDom);
 
     //渲染storage in calendar
-    haveStorageItem = todo_Obj[dateKey];   
+    haveStorageItem = todo_Obj[dateKey];
     if (haveStorageItem) {
       const ul = document.createElement("ul");
       todo_Obj[dateKey].forEach((item, idx) => {
@@ -218,11 +224,10 @@ function renderModal(dateKey) {
       //-----------------------------
     });
   }
-  modal.show();
+  create_todo_modal.show();
 }
-//Modal新增按鈕功能
+//create_todo_modal 按鈕功能 --------------------
 //新增鍵
-
 function addTodo(dateKey) {
   const todo_time = document.getElementById("todo_time");
   const todo_input = document.getElementById("todo_input");
@@ -298,6 +303,7 @@ function remove(dateKey, idx) {
   renderModal(dateKey);
 }
 
+//清單照時間排列---------------------------------
 function todo_Item_OrderBy(dateKey) {
   todo_Obj[dateKey].sort((a, b) => {
     const timeA = new Date(`1970/01/01 ${a.time}`);
@@ -305,3 +311,48 @@ function todo_Item_OrderBy(dateKey) {
     return timeA - timeB; // 升序排序
   });
 }
+
+//New_Todo_Modal 功能----------------------------
+const NewTodo_date_input = document.getElementById("NewTodo_date_input");
+const NewTodo_time_input = document.getElementById("NewTodo_time_input");
+const newTodo_input = document.getElementById("newTodo_input");
+const create_NewTodo_Btn = document.getElementById("create_NewTodo_Btn");
+create_NewTodo_Btn.addEventListener("click", () => { 
+  if (
+    NewTodo_date_input.value === "" ||
+    NewTodo_time_input.value === "" ||
+    newTodo_input.value === ""
+  ) {
+    return;
+  }
+  //-----------------------------------
+  dateKey = NewTodo_date_input.value;
+  if (!todo_Obj[dateKey]) {
+    todo_Obj[dateKey] = []; // 初始化為空陣列
+  }
+  const content = newTodo_input.value.trim();
+  if (content === "") {
+    return;
+  }
+  const newTodo = {
+    time: NewTodo_time_input.value,
+    content: content,
+  };
+  todo_Obj[dateKey].push(newTodo);
+  todo_Obj[dateKey].sort((a, b) => {
+    const timeA = new Date(`1970/01/01 ${a.time}`);
+    const timeB = new Date(`1970/01/01 ${b.time}`);
+    return timeA - timeB; // 升序排序
+  });
+  todo_input.value = "";
+  saveTodoObjToStorage();
+  //-----------------------------------
+
+  currentDate = new Date(
+    `${NewTodo_date_input.value} ${NewTodo_time_input.value}`
+  );
+  renderCalendar();
+  newTodo_modal.hide();
+  renderModal(NewTodo_date_input.value);
+  // console.log(NewTodo_date_input.value)
+});
