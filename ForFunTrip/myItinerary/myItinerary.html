@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>myItinerary</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/myItinerary.css" />
+    <style type="text/css">     
+    </style>
+  </head>
+  <body>
+    <div class="container" id="myItinerary">
+      <h2>行程</h2>
+      <select
+        class="form-select orderByTimeType"
+        aria-label="Default select example"
+      >
+        <option selected>上次編輯時間</option>
+        <option value="1">建立時間(從近到遠)</option>
+        <option value="2">建立時間(從遠到近)</option>
+      </select>
+
+      <div class="trip-list">
+        <div class="trip">
+          <div class="imgBox"><img src="./img/2.jpg" alt="東京行程" /></div>
+          <div class="trip-info">
+            <h3>浪漫東京遊 🦊 | Panasonic Beauty</h3>
+            <p>2025/01/14 - 2025/01/18</p>
+            <div class="trip-actions">
+              <button><i class="fa-regular fa-share-from-square"></i></button>
+              <div class="dropup">
+                <button
+                  class="btn btn-light dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-list"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">📋 複製行程</a></li>
+                  <li><a class="dropdown-item" href="#">👥 邀請共編</a></li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">🗑 刪除行程</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="trip">
+          <div class="imgBox"><img src="./img/2.jpg" alt="東京行程" /></div>
+          <div class="trip-info">
+            <h3>浪漫東京遊 🦊 | Panasonic Beauty</h3>
+            <p>2025/01/14 - 2025/01/18</p>
+            <div class="trip-actions">
+              <button><i class="fa-regular fa-share-from-square"></i></button>
+              <div class="dropup">
+                <button
+                  class="btn btn-light dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-list"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">📋 複製行程</a></li>
+                  <li><a class="dropdown-item" href="#">👥 邀請共編</a></li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">🗑 刪除行程</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="trip">
+          <div class="imgBox"><img src="./img/2.jpg" alt="東京行程" /></div>
+          <div class="trip-info">
+            <h3>浪漫東京遊 🦊 | Panasonic Beauty</h3>
+            <p>2025/01/14 - 2025/01/18</p>
+            <div class="trip-actions">
+              <button><i class="fa-regular fa-share-from-square"></i></button>
+              <div class="dropup">
+                <button
+                  class="btn btn-light dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-list"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">📋 複製行程</a></li>
+                  <li><a class="dropdown-item" href="#">👥 邀請共編</a></li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">🗑 刪除行程</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="new-trip">建立新行程</button>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

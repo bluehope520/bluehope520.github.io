@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Maps UI Clone (Bootstrap version)</title>
+
+    <!-- Vue 3 & Element Plus (只保留 Vue 用於掛載，有需要時再使用 ElementPlus) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+    <script src="https://unpkg.com/element-plus"></script>
+
+    <!-- 引入 Bootstrap 5 與 Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <style>
+      /* 背景顏色可由 Bootstrap 工具類替換, 這裡示範保留原有色塊 */
+      .bg-custom {
+        background-color: #cce7f5;
+      }
+
+      /* 使用更圓潤的外觀 (如需要，可自行調整) */
+      .rounded-pill {
+        border-radius: 50rem !important;
+      }
+
+      /* 讓輸入框、按鈕保持更一致的陰影 */
+      .shadow-custom {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="searchBar" class="container-fluid bg-custom py-3">
+      <div class="row align-items-center justify-content-start g-3">
+        <!-- 搜尋框 -->
+        <div class="col-auto">
+          <div class="input-group shadow-custom rounded-pill">
+            <span class="input-group-text bg-white border-0 rounded-pill">
+              <!-- 替換為 Bootstrap Icons -->
+              <i class="bi bi-search text-muted"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-0 rounded-pill"
+              placeholder="搜尋"
+              aria-label="搜尋"
+            />
+          </div>
+        </div>
+
+        <!-- 功能按鈕群組 -->
+        <div class="col-auto d-flex gap-2">
+          <!-- 景點 -->
+          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+            <i class="bi bi-camera-fill"></i>
+            <span>景點</span>
+          </button>
+
+          <!-- 美食 -->
+          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+            <i class="bi bi-basket-fill"></i>
+            <span>美食</span>
+          </button>
+
+          <!-- 住宿 -->
+          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+            <i class="bi bi-house-fill"></i>
+            <span>住宿</span>
+          </button>
+
+          <!-- 收藏 -->
+          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+            <i class="bi bi-star-fill"></i>
+            <span>收藏</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        // 如有需要可在此定義 Vue 組件或資料
+      })
+      .use(ElementPlus)
+      .mount('#searchBar');
+    </script>
+  </body>
+</html>
