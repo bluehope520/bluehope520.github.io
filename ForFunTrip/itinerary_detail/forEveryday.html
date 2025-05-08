@@ -1,124 +1,294 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>行程列表</title>
-    
+
     <!-- 引入 Bootstrap 5 與 Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Vue 3 & Element Plus -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/dist/index.css"
+    />
     <script src="https://unpkg.com/element-plus"></script>
     <script src="https://unpkg.com/@element-plus/icons-vue"></script>
-</head>
-<body class="bg-light">
-
-<div id="app" class="container mt-4">
-    <!-- Header -->
-    <header class="d-flex justify-content-between align-items-center bg-primary text-white p-3 rounded">
+  </head>
+  <body class="bg-light">
+    <div id="app" class="container mt-4">
+      <!-- Header -->
+      <header
+        class="d-flex justify-content-between align-items-center bg-primary text-white p-3 rounded"
+      >
         <h5 class="mb-0">行程列表</h5>
-    </header>
+      </header>
 
-    <!-- Navigation Tabs -->
-    <div class="d-flex align-items-center mt-3">
+      <!-- Navigation Tabs -->
+      <div class="d-flex align-items-center mt-3">
         <el-tabs v-model="activeTab" class="flex-grow-1">
-            <el-tab-pane v-for="(day, index) in days" :key="index" :label="day.label" :name="day.name"></el-tab-pane>
+          <el-tab-pane
+            v-for="(day, index) in days"
+            :key="index"
+            :label="day.label"
+            :name="day.name"
+          ></el-tab-pane>
         </el-tabs>
         <el-button class="ms-3" @click="addDay" type="primary" circle>
-            <el-icon><component :is="PlusIcon" /></el-icon>
+          <el-icon><component :is="PlusIcon" /></el-icon>
         </el-button>
+      </div>
+
+      <!-- Date -->
+      <div class="mt-3 fw-bold fs-5" v-if="activeTab !== 'overview'">
+        {{ getDateLabel(activeTab) }}
+      </div>
+      <div class="mt-3 fw-bold fs-5" v-if="activeTab === 'overview'">
+        行程總覽
+      </div>
+
+      <!-- Itinerary List -->
+      <el-card
+        v-for="(item, index) in filteredItinerary"
+        :key="index"
+        class="mt-3 shadow-sm border-0"
+      >
+        <div class="d-flex align-items-start">
+          <span
+            :class="['badge', getBadgeColor(item.day), 'text-white', 'me-3', 'fs-6', 'px-3', 'py-2']"
+            > {{ index+1 }}</span
+          >
+          <img
+            :src="item.image"
+            class="rounded"
+            alt="行程圖片"
+            width="80"
+            height="80"
+          />
+          <div class="ms-3 flex-grow-1">
+            <small class="d-block fw-bold" :class="getTextColor(item.day)">
+              <el-icon class="me-1"><component :is="ClockIcon" /></el-icon> {{
+              item.time }}
+            </small>
+            <h6 class="mt-1 mb-1 fw-bold">{{ item.title }}</h6>
+            <small class="text-muted d-block">{{ item.duration }}</small>
+          </div>
+          <el-dropdown>
+            <el-icon class="text-secondary fs-4" slot="dropdown"
+              ><component :is="MoreFilledIcon"
+            /></el-icon>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item
+                  ><el-icon class="me-2"
+                    ><component :is="MoreFilledIcon"
+                  /></el-icon>
+                  移動到別天</el-dropdown-item
+                >
+                <el-dropdown-item
+                  ><el-icon class="me-2"><component :is="PlusIcon" /></el-icon>
+                  複製</el-dropdown-item
+                >
+                <el-dropdown-item
+                  ><el-icon class="me-2"
+                    ><component :is="SettingIcon"
+                  /></el-icon>
+                  刪除</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </el-card>
     </div>
 
-    <!-- Date -->
-    <div class="mt-3 fw-bold fs-5" v-if="activeTab !== 'overview'">{{ getDateLabel(activeTab) }}</div>
-    <div class="mt-3 fw-bold fs-5" v-if="activeTab === 'overview'">行程總覽</div>
+    <script>
+      const { createApp, ref, computed } = Vue;
+      const { Plus, MoreFilled, Setting, Clock } = ElementPlusIconsVue;
 
-    <!-- Itinerary List -->
-    <el-card v-for="(item, index) in filteredItinerary" :key="index" class="mt-3 shadow-sm border-0">
-        <div class="d-flex align-items-start">
-            <span :class="['badge', getBadgeColor(item.day), 'text-white', 'me-3', 'fs-6', 'px-3', 'py-2']">{{ item.index }}</span>
-            <img :src="item.image" class="rounded" alt="行程圖片" width="80" height="80">
-            <div class="ms-3 flex-grow-1">
-                <small class="d-block fw-bold" :class="getTextColor(item.day)">
-                    <el-icon class="me-1"><component :is="ClockIcon" /></el-icon> {{ item.time }}
-                </small>
-                <h6 class="mt-1 mb-1 fw-bold">{{ item.title }}</h6>
-                <small class="text-muted d-block">{{ item.duration }}</small>
-            </div>
-            <el-dropdown>
-                <el-icon class="text-secondary fs-4" slot="dropdown"><component :is="MoreFilledIcon" /></el-icon>
-                <template #dropdown>
-                    <el-dropdown-menu>
-                        <el-dropdown-item><el-icon class="me-2"><component :is="MoreFilledIcon" /></el-icon> 移動到別天</el-dropdown-item>
-                        <el-dropdown-item><el-icon class="me-2"><component :is="PlusIcon" /></el-icon> 複製</el-dropdown-item>
-                        <el-dropdown-item><el-icon class="me-2"><component :is="SettingIcon" /></el-icon> 刪除</el-dropdown-item>
-                    </el-dropdown-menu>
-                </template>
-            </el-dropdown>
-        </div>
-    </el-card>
-</div>
+      createApp({
+        setup() {
+          const activeTab = ref("overview");
+          const PlusIcon = ref(Plus);
+          const SettingIcon = ref(Setting);
+          const ClockIcon = ref(Clock);
+          const MoreFilledIcon = ref(MoreFilled);
+          const startDate = ref("2025-07-01"); // 出發日
+          const endDate = ref("2025-07-10"); // 結束日
 
-<script>
-const { createApp, ref, computed } = Vue;
-const { Plus,MoreFilled,Setting, Clock } = ElementPlusIconsVue;
-
-createApp({
-    setup() {
-        const activeTab = ref("day1");
-        const PlusIcon = ref(Plus);
-        const SettingIcon = ref(Setting);
-        const ClockIcon = ref(Clock);
-        const MoreFilledIcon = ref(MoreFilled);
-        const startDate = ref("2025-07-01"); // 出發日
-        const endDate = ref("2025-07-10");   // 結束日
-           
-        const days = computed(() => {
+          const days = computed(() => {
             const start = new Date(startDate.value);
             const end = new Date(endDate.value);
-            const totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
-          
+            const totalDays =
+              Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+
             return [
-                { label: "總覽頁", name: "overview" },
-                ...Array.from({ length: totalDays }, (_, i) => ({ 
-                    label: `第${i + 1}天`, 
-                    name: `day${i + 1}` 
-                }))
+              { label: "總覽頁", name: "overview" },
+              ...Array.from({ length: totalDays }, (_, i) => ({
+                label: `第${i + 1}天`,
+                name: `day${i + 1}`,
+              })),
             ];
-        });
-        //------------------------修改
-        const addDay = () => {
+          });
+          //------------------------修改
+          const addDay = () => {
             const newEndDate = new Date(endDate.value);
             newEndDate.setDate(newEndDate.getDate() + 1);
-            endDate.value = newEndDate.toISOString().split('T')[0];            
-        };
+            endDate.value = newEndDate.toISOString().split("T")[0];
+          };
 
-        const colors = ["bg-warning", "bg-danger", "bg-success", "bg-info", "bg-primary", "bg-secondary", "bg-dark"];
-        const textColors = ["text-warning", "text-danger", "text-success", "text-info", "text-primary", "text-secondary", "text-dark"];
+          const colors = [
+            "bg-warning",
+            "bg-danger",
+            "bg-success",
+            "bg-info",
+            "bg-primary",
+            "bg-secondary",
+            "bg-dark",
+          ];
+          const textColors = [
+            "text-warning",
+            "text-danger",
+            "text-success",
+            "text-info",
+            "text-primary",
+            "text-secondary",
+            "text-dark",
+          ];
 
-        const itinerary = ref([
-            { day: "day1", index: 1, time: "09:00", title: "機場出發", duration: "停留 1 小時", image: "https://picsum.photos/80" },
-            { day: "day2", index: 1, time: "10:00", title: "知名景點 A", duration: "停留 2 小時", image: "https://picsum.photos/80" },
-            { day: "day3", index: 1, time: "14:00", title: "特色美食 B", duration: "停留 1.5 小時", image: "https://picsum.photos/80" },
-            { day: "day4", index: 1, time: "11:30", title: "博物館 C", duration: "停留 2 小時", image: "https://picsum.photos/80" },
-          
-            { day: "day6", index: 1, time: "09:00", title: "機場出發", duration: "停留 1 小時", image: "https://picsum.photos/80" },
-            { day: "day7", index: 1, time: "10:00", title: "知名景點 A", duration: "停留 2 小時", image: "https://picsum.photos/80" },
-            { day: "day8", index: 1, time: "14:00", title: "特色美食 B", duration: "停留 1.5 小時", image: "https://picsum.photos/80" },
-            { day: "day9", index: 1, time: "11:30", title: "博物館 C", duration: "停留 2 小時", image: "https://picsum.photos/80" },
-            { day: "day10", index: 1, time: "16:00", title: "購物中心 D", duration: "停留 3 小時", image: "https://picsum.photos/80" }
-        ]);
+          const itinerary = ref([
+            {
+              day: "day1",
+              index: 1,
+              time: "09:00",
+              title: "1機場出發",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day1",
+              index: 2,
+              time: "09:00",
+              title: "2ZZZ",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day1",
+              index: 4,
+              time: "15:00",
+              title: "4機XXX場出發",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day1",
+              index: 3,
+              time: "20:00",
+              title: "3機場CC出發",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day1",
+              index: 1,
+              time: "09:00",
+              title: "機場出發",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day1",
+              index: 1,
+              time: "09:00",
+              title: "機場出發",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day2",
+              index: 1,
+              time: "10:00",
+              title: "知名景點 A",
+              duration: "停留 2 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day3",
+              index: 1,
+              time: "14:00",
+              title: "特色美食 B",
+              duration: "停留 1.5 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day4",
+              index: 1,
+              time: "11:30",
+              title: "博物館 C",
+              duration: "停留 2 小時",
+              image: "https://picsum.photos/80",
+            },
 
-        const filteredItinerary = computed(() => {
-            return activeTab.value === 'overview' ? itinerary.value : itinerary.value.filter(item => item.day === activeTab.value);
-        });
+            {
+              day: "day6",
+              index: 1,
+              time: "09:00",
+              title: "機場出發",
+              duration: "停留 1 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day7",
+              index: 1,
+              time: "10:00",
+              title: "知名景點 A",
+              duration: "停留 2 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day8",
+              index: 1,
+              time: "14:00",
+              title: "特色美食 B",
+              duration: "停留 1.5 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day9",
+              index: 1,
+              time: "11:30",
+              title: "博物館 C",
+              duration: "停留 2 小時",
+              image: "https://picsum.photos/80",
+            },
+            {
+              day: "day10",
+              index: 1,
+              time: "16:00",
+              title: "購物中心 D",
+              duration: "停留 3 小時",
+              image: "https://picsum.photos/80",
+            },
+          ]);
 
-        const getDateLabel = (day) => {
+          const filteredItinerary = computed(() => {
+            return activeTab.value === "overview"
+              ? itinerary.value
+              : itinerary.value.filter((item) => item.day === activeTab.value);
+          });
+
+          const getDateLabel = (day) => {
             if (day === "overview") return "行程總覽";
 
             const start = new Date(startDate.value);
@@ -127,22 +297,24 @@ createApp({
 
             const month = start.getMonth() + 1;
             const date = start.getDate();
-            const weekDay = ["日", "一", "二", "三", "四", "五", "六"][start.getDay()];
+            const weekDay = ["日", "一", "二", "三", "四", "五", "六"][
+              start.getDay()
+            ];
 
             return `${month}/${date} 週${weekDay}`;
-        };
+          };
 
-        const getBadgeColor = (day) => {
-            const index = days.value.findIndex(d => d.name === day);
+          const getBadgeColor = (day) => {
+            const index = days.value.findIndex((d) => d.name === day);
             return colors[index % colors.length];
-        };
+          };
 
-        const getTextColor = (day) => {
-            const index = days.value.findIndex(d => d.name === day);
+          const getTextColor = (day) => {
+            const index = days.value.findIndex((d) => d.name === day);
             return textColors[index % textColors.length];
-        };
+          };
 
-        return {
+          return {
             activeTab,
             days,
             filteredItinerary,
@@ -153,11 +325,12 @@ createApp({
             MoreFilledIcon,
             SettingIcon,
             getTextColor,
-            addDay
-        };
-    }
-}).use(ElementPlus).mount("#app");
-</script>
-
-</body>
+            addDay,
+          };
+        },
+      })
+        .use(ElementPlus)
+        .mount("#app");
+    </script>
+  </body>
 </html>

@@ -1,186 +1,146 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="h-100">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>NavBar + Map + Hot Places (Dynamic Position)</title>
-
-    <!-- Vue 3 (最新) -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
-    <!-- Element Plus & Icons (最新) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FunTrip</title>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <!-- Element Plus CSS -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/element-plus/dist/index.css"
     />
-    <script src="https://unpkg.com/element-plus"></script>
     <script src="https://unpkg.com/@element-plus/icons-vue"></script>
 
-    <!-- Bootstrap 5 & Icons (最新) -->
+    <script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
+    <!-- Bootstrap CSS -->
     <link
-      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
     />
+
+    <!-- font-awesome icon-->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- Leaflet (OpenStreetMap) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <style>
-      /* 側邊欄展開／收合 (Bootstrap 無此細項，需要自行定義) */
-      .aside-collapsed {
-        width: 64px;
-        transition: width 0.3s ease;
-      }
-      .aside-expanded {
-        width: 160px;
-        transition: width 0.3s ease;
-      }
-
-      /* 讓 body 與主要容器撐滿畫面，並隱藏瀏覽器捲軸 */
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        overflow: hidden;
-      }
-      .h-100 {
-        height: 100%;
-      }
-
-      /* 移除輸入框、按鈕聚焦時的外框線 */
-      .input-group-text:focus,
-      .form-control:focus {
-        box-shadow: none !important;
-        outline: none !important;
-        border: 0 !important;
-      }
-    </style>
+    <!-- 自己設的 -->
+    <link rel="stylesheet" href="./css/index.css" />
+    <style type="text/css"></style>
   </head>
-  <body class="m-0 p-0 h-100">
-    <div
-      id="index"
-      class="bg-light h-100"
-      @click="closePanelOutside"
-      @click="closePanelOutside"
-    >
-      <el-container class="d-flex flex-row min-vh-100">
-        <!-- 🔸 左側側欄 (Element Plus Aside) -->
-        <el-aside
-          :class="[
-        'bg-white shadow overflow-hidden d-flex flex-column justify-content-between',
-        isCollapsed ? 'aside-collapsed' : 'aside-expanded'
-      ]"
-          @mouseenter="expandMenu"
-          @mouseleave="collapseMenu"
-        >
-          <el-menu
-            :default-active="activeIndex"
-            :collapse="isCollapsed"
-            class="border-0 flex-grow-1"
-          >
-            <!-- LOGO -->
-            <el-menu-item index="1" class="d-flex align-items-center px-3 py-2">
-              <img
-                src="./navBar/img/FunTrip_logo.png"
-                alt="FUNTrip"
-                style="width: 32px"
-              />
-              <span v-if="!isCollapsed" class="ms-2">FUNTrip</span>
-            </el-menu-item>
+  <body>
+    <div id="index">
+      <!-- 上方搜尋欄searchBar section -->
+      <section class="searchBar ">
+        <div class="head">
+          <div class="menuBtn">
+            <i class="fa-solid fa-bars" @click="showMenu()"></i>
+          </div>
 
-            <!-- 選單項目 -->
-            <el-menu-item
-              index="2"
-              class="d-flex align-items-center text-body px-3 py-2"
-            >
-              <el-icon class="me-2"><component :is="Compass" /></el-icon>
-              <span v-if="!isCollapsed">發現</span>
-            </el-menu-item>
+          <!-- 搜尋框 (v-model="searchQuery") -->
+          <div class="searchInput custom_button">
+            <span >
+              <el-icon><search /></el-icon>
+            </span>
+            <input type="text" class="form-control " placeholder="輸入關鍵字" />
+          </div>
+        </div>
 
-            <el-menu-item
-              index="3"
-              class="d-flex align-items-center text-body px-3 py-2"
-            >
-              <el-icon class="me-2"><component :is="Flag" /></el-icon>
-              <span v-if="!isCollapsed">行程靈感</span>
-            </el-menu-item>
+        <!-- 篩選按鈕 (僅示範) -->
+        <div class="searchBtns">
+          <button class="custom_button">
+            <el-icon ><Camera /></el-icon> 景點
+          </button>
+          <button class="custom_button">
+            <el-icon><knife-fork /></el-icon>美食
+          </button>
+          <button class="custom_button">
+            <el-icon><Shopping-Bag /></el-icon> 購物
+          </button>
+          <button class="custom_button">
+            <el-icon><Ticket /></el-icon> 票券
+          </button>
+          <button class="custom_button">
+            <el-icon><Star /></el-icon> 收藏
+          </button>
+        </div>
+      </section>
 
-            <el-menu-item
-              index="4"
-              class="d-flex align-items-center text-body px-3 py-2"
-            >
-              <el-icon class="me-2"><component :is="ShoppingCart" /></el-icon>
-              <span v-if="!isCollapsed">商城</span>
-            </el-menu-item>
+      <!-- 左側側欄MenuBar section -->
+      <section
+        class="funtripMenuBar"
+        v-if="showMenuBar || !isMobile"
+        @mouseenter="expandMenu()"
+        @mouseleave="collapseMenu()"
+      >
+        <el-menu class="funtripMenu">
+          <!-- LOGO -->
+          <el-menu-item class="logoBox custom_button">
+            <img src="./img/FunTrip_logo.png" style="width: 36px" />
+            <span v-if="!MenuBarCollapsed || isMobile">FUNTrip</span>
+            <el-icon v-if="isMobile" @click="showMenu()"
+              ><Close-Bold
+            /></el-icon>
+          </el-menu-item>
 
-            <!-- 分隔線 -->
-            <el-divider class="my-2"></el-divider>
+          <!-- 選單項目 -->
+          <el-menu-item index="2" class="custom_button">
+            <el-icon><compass /></el-icon>
+            <span v-if="!MenuBarCollapsed || isMobile">發現</span>
+          </el-menu-item>
 
-            <el-menu-item
-              index="5"
-              class="d-flex align-items-center text-body px-3 py-2"
-            >
-              <el-icon class="me-2"><component :is="User" /></el-icon>
-              <span v-if="!isCollapsed">會員</span>
-            </el-menu-item>
-          </el-menu>
-        </el-aside>
-        <!-- 🔸 右側側欄 ( Right_Panel) -->
+          <el-menu-item index="3"class="custom_button">
+            <el-icon><flag /></el-icon>
+            <span v-if="!MenuBarCollapsed || isMobile">行程靈感</span>
+          </el-menu-item>
 
+          <el-menu-item index="4"class="custom_button">
+            <el-icon><shopping-cart /></el-icon>
+            <span v-if="!MenuBarCollapsed || isMobile">商城</span>
+          </el-menu-item>
+
+          <!-- 分隔線 -->
+          <el-divider class="my-2"></el-divider>
+
+          <el-menu-item index="5"class="custom_button">
+            <el-icon><user /></el-icon>
+            <span v-if="!MenuBarCollapsed || isMobile">會員</span>
+          </el-menu-item>
+        </el-menu>
+      </section>
+
+      <!-- 右側側欄scheduleBar section -->
+      <section class="scheduleBar">
         <!-- 頂右角行程按鈕 -->
-        <el-button
-          v-if="!showPanel"
-          type="warning"
-          class="position-fixed top-0 end-0 border-0 text-white shadow d-flex align-items-center px-2 py-2 rounded-start-pill"
-          style="
-            z-index: 1100;
-            margin-top: 20px;
-            width: 40px;
-            transition: width 0.3s ease;
-          "
+        <button
+          v-if="!showSchedulePanel"
+          class="scheduleBtn"
           @mouseenter="hovered = true"
           @mouseleave="hovered = false"
-          :class="{ 'w-auto': hovered }"
-          @click.stop="togglePanel(true)"
+          @click="showSchedulePanel=true"
         >
-          <i class="bi bi-briefcase fs-5"></i>
-          <span v-if="hovered" class="ms-2">行程</span>
-        </el-button>
+          <el-icon><Suitcase-Line /></el-icon>
+          <span v-if="hovered">行程</span>
+        </button>
 
         <!-- 右側行程面板 -->
-        <div
-          v-if="showPanel"
-          class="position-fixed top-0 end-0 bottom-0 bg-white shadow d-flex flex-column"
-          style="width: 360px; z-index: 1050"
-          @click.stop
-        >
+        <div v-if="showSchedulePanel" class="schedulePanel">
           <!-- 面板 Header -->
-          <div
-            class="p-3 border-bottom d-flex justify-content-between align-items-center"
-          >
-            <h2 class="fs-5 m-0">行程</h2>
-            <i
-              class="bi bi-x fs-3"
-              role="button"
-              @click="togglePanel(false)"
-            ></i>
+          <div class="head">
+            <h3>行程</h3>
+            <el-icon @click="showSchedulePanel=false"><Close-Bold /></el-icon>
           </div>
 
           <!-- 下拉選單 -->
-          <el-select
-            v-model="selectedOption"
-            placeholder="上次編輯時間"
-            class="p-3"
-            style="width: 100%; max-width: 300px"
-          >
+          <el-select v-model="selectedOption" placeholder="上次編輯時間">
             <el-option label="上次編輯時間" value="recent_lastEdit"></el-option>
             <el-option
               label="建立時間 (從近到遠)"
@@ -193,433 +153,349 @@
           </el-select>
 
           <!-- 面板內容 (行程列表) -->
-          <div class="flex-fill overflow-auto p-3">
-            <div class="row row-cols-1 g-3">
-              <div class="col" v-for="(trip, index) in trips" :key="index">
-                <el-card class="shadow">
-                  <div class="d-flex">
-                    <!-- 圖片 -->
-                    <el-image
-                      :src="trip.img"
-                      class="img-fluid rounded"
-                      style="width: 100px; height: 80px"
-                    ></el-image>
-                    <div class="ms-3">
-                      <h3 class="fs-6 mb-1">{{ trip.title }}</h3>
-                      <p class="text-muted small mb-0">{{ trip.date }}</p>
-                      <!-- 行程動作按鈕 -->
-                      <div class="d-flex gap-2 justify-content-end mt-1">
-                        <el-button type="text" @click="shareTrip(index)">
-                          <i class="fa-regular fa-share-from-square"></i>
-                        </el-button>
-                        <!-- 下拉選單 -->
-                        <el-dropdown>
-                          <el-button type="text">
-                            <i class="fa-solid fa-list"></i>
-                          </el-button>
-                          <template #dropdown>
-                            <el-dropdown-menu>
-                              <el-dropdown-item @click="copyTrip(index)">
-                                📋 複製行程
-                              </el-dropdown-item>
-                              <el-dropdown-item @click="inviteTrip(index)">
-                                👥 邀請共編
-                              </el-dropdown-item>
-                              <el-dropdown-item
-                                class="text-danger"
-                                @click="deleteTrip(index)"
-                              >
-                                🗑 刪除行程
-                              </el-dropdown-item>
-                            </el-dropdown-menu>
-                          </template>
-                        </el-dropdown>
-                      </div>
+          <div class="scheduleCardBox">
+            <div
+              class="scheduleCard"
+              v-for="(trip, index) in trips"
+              :key="index"
+            >
+              <!-- 行程卡片資訊 -->
+              <div class="cardInfo">
+                <div class="imgBox" @click="moveToScheduleDetail(trip)">
+                  <img :src="trip.img" alt="" />
+                </div>
+                <div class="textBox">
+                  <h3 class="title" @click="moveToScheduleDetail(trip)">
+                    {{ trip.title }}
+                  </h3>
+                  <p class="date" @click="moveToScheduleDetail(trip)">
+                    {{ trip.firstDate }}-{{trip.lastDate}}
+                  </p>
+                  <!-- 行程動作按鈕 -->
+                  <div class="button_group">
+                    <!-- 分享按鈕 -->
+                    <button class="cardBtn" onclick="shareTrip(1)">
+                      <el-icon><Share /></el-icon>
+                    </button>
+                    <!-- 編輯、刪除行程按鈕 下拉選單 -->
+                    <div class="dropdown">
+                      <button
+                        class="cardBtn"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <el-icon><More-Filled /></el-icon>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <button class="dropdown-item custom_button" onclick="copyTrip(1)">
+                            <div class="icon">
+                              <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <p>複製行程</p>
+                          </button>
+                        </li>
+                        <li>
+                          <button class="dropdown-item custom_button" onclick="inviteTrip(1)">
+                            <div class="icon">
+                              <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <p>邀請共編</p>
+                          </button>
+                        </li>
+                        <div
+                          style="
+                            border-bottom: 1px solid rgb(204, 204, 204);
+                            width: 100%;
+                          "
+                        ></div>
+                        <li>
+                          <button
+                          
+                            class="dropdown-item custom_button"
+                            onclick="deleteTrip(1)"
+                          >
+                            <div class="icon">
+                              <i class="fa-regular fa-trash-can"></i>
+                            </div>
+                            <p>刪除行程</p>
+                          </button>
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                </el-card>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- 建立新行程按鈕 -->
-          <div class="p-3">
-            <el-button
-              type="primary"
-              size="large"
-              class="w-100"
-              @click="createNewTrip"
+          <div class="addNewScheduleBtn ">
+            <button
+              class="custom_button"
+              onclick="createNewTrip()"              
             >
               建立新行程
-            </el-button>
+            </button>
           </div>
         </div>
+      </section>
 
-        <!-- 🔸 右側主要內容 (el-main) -->
-        <el-main
-          class="position-relative flex-fill"
-          style="min-height: 100vh; padding: 0"
+      <!-- 右側側欄 scheduleDetailBar section -->
+      <section v-if="ShowThisScheduleDetail" class="scheduleDetailBar">
+        <div class="head">
+          <div @click="this.ShowThisScheduleDetail=false">
+            <el-icon><Caret-Left /></el-icon>
+            <h5>行程列表</h5>
+          </div>
+          <div>
+            <el-icon><Share /></el-icon>
+            <el-icon><Setting /></el-icon>
+            <el-icon
+              class="closeBtn"
+              @click="showSchedulePanel=false,ShowThisScheduleDetail = false "
+              ><Close-Bold
+            /></el-icon>
+          </div>
+        </div>
+        <div class="scheduleDetailPanel">
+          <!-- Header -->
+
+          <!-- Navigation Tabs -->
+          <div class="NavTab">
+            <el-tabs v-model="activeTab">
+              <el-tab-pane
+                v-for="(day, index) in tripDaysTabs"
+                :key="index"
+                :label="day.label"
+                :name="day.name"
+              ></el-tab-pane>
+            </el-tabs>
+            <!-- 點擊事件要改 -->
+            <button @click="moveToScheduleDetail">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+
+          <!-- Date -->
+          <div class="detailTitle" v-if="activeTab !== 'overview'">
+            {{ getDateLabel(activeTab) }}
+          </div>
+          <div class="detailTitle" v-if="activeTab === 'overview'">
+            行程總覽
+          </div>
+
+          <!-- Itinerary List -->
+          <div class="CardList">
+            <el-card v-for="(item, index) in filteredItinerary" :key="index">
+              <div class="imgBox">
+                <i
+                  class="fa-solid fa-bookmark"
+                  :style="[getTextColor(item.day),]"
+                ></i>
+                <span>{{ index+1 }}</span>
+                <img :src="item.image" alt="行程圖片" />
+              </div>
+              <div class="textBox">
+                <!-- 這要掛一個修改時間的modal -->
+                <small class="arrivalTime" :style="getTextColor(item.day)">
+                  <el-icon><Clock /></el-icon>
+                  {{ item.time }}<el-icon style="color: #5e5e5eb2"
+                    ><Edit-Pen
+                  /></el-icon>
+                </small>
+                <h6>{{ item.title }}</h6>
+                <small class="stayTime">{{ item.duration }}</small>
+              </div>
+              <div class="noteBox">
+                <span class="notebook" :style="getTextColor(item.day)">
+                  <el-icon><Collection /></el-icon>
+                  筆記
+                </span>
+                <span class="note"> {{item.note}} </span>
+              </div>
+              <el-dropdown>
+                <el-icon class="text-secondary fs-4" slot="dropdown"
+                  ><More-Filled
+                /></el-icon>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item
+                      ><el-icon><Calendar /></el-icon>
+                      移動到別天</el-dropdown-item
+                    >
+                    <el-dropdown-item
+                      ><el-icon><Copy-Document /></el-icon>
+                      複製</el-dropdown-item
+                    >
+                    <el-dropdown-item
+                      ><el-icon><Delete /></el-icon> 刪除</el-dropdown-item
+                    >
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+            </el-card>
+          </div>
+        </div>
+      </section>
+
+      <!-- 地圖相關 -->
+      <section id="map">
+        <!-- 右側中間按鈕 (示範) -->
+        <div class="mapBtns middleBtn">
+          <button>
+            <i class="fa-regular fa-eye"></i>
+          </button>
+          <button>
+            <i class="fa-regular fa-eye-slash"></i>
+          </button>
+        </div>
+
+        <!-- 自訂放大縮小按鈕 (右下角) -->
+        <div class="mapBtns bottomBtns">
+          <button id="btnCrosshair">
+            <i class="fa-solid fa-location-crosshairs"></i>
+          </button>
+          <button id="btnZoomIn">
+            <el-icon><Plus /></el-icon>
+          </button>
+          <button id="btnZoomOut">
+            <el-icon><Minus /></el-icon>
+          </button>
+        </div>
+      </section>
+
+      <!-- 左側景點(產品)欄 -->
+      <section class="productsBar">
+        <!-- 景點列表開關  -->
+        <button
+          v-if="showProducts && !isMobile"
+          class="showProductsBtn"
+          title="顯示清單"
+          @click="showProductsBox()"
         >
-          <!-- 頂部搜尋列：移除 start-0，改用動態綁定 :style="topBarStyle" -->
-          <div
-            class="container-fluid py-3 position-fixed top-0 w-100 bg-transparent shadow-sm"
-            style="z-index: 1000"
-            :style="topBarStyle"
-          >
-            <div class="d-flex align-items-center">
-              <!-- 搜尋框 (v-model="searchQuery") -->
-              <div style="max-width: 280px">
-                <div class="input-group shadow rounded-pill overflow-hidden">
-                  <span class="input-group-text border-0 bg-white">
-                    <i class="bi bi-search text-muted"></i>
-                  </span>
-                  <input
-                    type="text"
-                    class="form-control border-0 bg-white"
-                    placeholder="輸入關鍵字"
-                    v-model="searchQuery"
-                  />
-                </div>
-              </div>
-              <!-- 篩選按鈕 (僅示範) -->
-              <div class="ms-3 d-flex gap-2">
-                <button
-                  class="btn btn-light d-flex align-items-center gap-1 shadow rounded-pill"
-                >
-                  <i class="bi bi-camera-fill"></i> 景點
-                </button>
-                <button
-                  class="btn btn-light d-flex align-items-center gap-1 shadow rounded-pill"
-                >
-                  <i class="bi bi-basket-fill"></i> 美食
-                </button>
-                <button
-                  class="btn btn-light d-flex align-items-center gap-1 shadow rounded-pill"
-                >
-                  <i class="bi bi-house-fill"></i> 住宿
-                </button>
-                <button
-                  class="btn btn-light d-flex align-items-center gap-1 shadow rounded-pill"
-                >
-                  <i class="bi bi-star-fill"></i> 收藏
-                </button>
-              </div>
-            </div>
-            <!-- "搜尋此區域" 按鈕 -->
-            <button
-              class="btn btn-light shadow position-absolute top-100 start-50 translate-middle-x rounded-pill"
-              style="width: 150px; z-index: 1000"
-            >
-              <i class="bi bi-search"></i> 搜尋此區域
-            </button>
-          </div>
-
-          <!-- Leaflet 地圖鋪滿底層 -->
-          <div id="map" class="w-100 h-100 z-0"></div>
-
-          <!-- 右側中間按鈕 (示範) -->
-          <div
-            class="position-absolute top-50 end-0 mb-3 me-3 translate-middle-y d-flex flex-column"
-            style="z-index: 1000"
-          >
-            <button class="btn btn-light mb-2 shadow">
-              <i class="bi bi-eye"></i>
-            </button>
-            <button class="btn btn-light shadow">
-              <i class="bi bi-signpost"></i>
-            </button>
-          </div>
-
-          <!-- 自訂放大縮小按鈕 (右下角) -->
-          <div
-            class="position-absolute bottom-0 end-0 mb-3 me-3 d-flex flex-column"
-            style="z-index: 1001"
-          >
-            <button class="btn btn-light mb-2 shadow" id="btnCrosshair">
-              <i class="bi bi-crosshair"></i>
-            </button>
-            <button class="btn btn-light mb-2 shadow" id="btnZoomIn">
-              <i class="bi bi-plus"></i>
-            </button>
-            <button class="btn btn-light shadow" id="btnZoomOut">
-              <i class="bi bi-dash"></i>
-            </button>
-          </div>
-
-          <!-- 🔸 當有輸入時，顯示「熱門景點列表」在頂部列正下方 -->
-          <div
-            v-if="searchQuery"
-            class="card shadow-sm rounded p-3 bg-white"
-            :style="placesListStyle"
-          >
-            <!-- 標題欄 -->
-            <div
-              class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3"
-            >
+          <i class="fa-solid fa-list"></i>
+        </button>
+        <div v-if="!showProducts" class="productsArea">
+          <!-- 把內容往下推用 -->
+          <div class="pushHead"></div>
+          <!-- 景點(產品)面板 -->
+          <div class="productsPanel">
+            <!-- Title -->
+            <div class="sortBy">
               <div class="dropdown">
                 <button
-                  class="btn btn-light dropdown-toggle"
+                  class="btn btn-light"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                   @click="toggleDropdown"
                 >
-                  <i
-                    :class="{'bi bi-arrow-down-up': !isDropdownOpen, 'bi bi-arrow-up-down': isDropdownOpen}"
-                  ></i>
-                  熱門景點
+                  <el-icon><Sort /></el-icon>
+                  {{sortByWhat}}
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item active" href="#">熱門景點</a></li>
-                  <li><a class="dropdown-item" href="#">熱門貼文</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      @click.prevent="updateDropdown('評價')"
+                      >評價</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      @click.prevent="updateDropdown('加入行程次數')"
+                      >加入行程</a
+                    >
+                  </li>
                 </ul>
               </div>
-              <i
-                class="bi bi-x-circle-fill text-muted"
-                role="button"
-                @click="closeList"
-              ></i>
+              <el-icon v-if="!isMobile" @click="showProductsBox()"
+                ><Close-Bold
+              /></el-icon>
             </div>
             <!-- 景點卡片列表 -->
             <div class="list-group">
               <div
                 v-for="(place, index) in places"
                 :key="index"
-                class="list-group-item border-0 p-3 shadow-sm rounded-3 position-relative d-flex gap-3"
-                style="margin-bottom: 8px; background-color: #fff"
+                class="list-group-item productCard"
               >
                 <!-- 圖片區塊 (含愛心按鈕) -->
-                <div class="position-relative" style="min-width: 120px">
-                  <img
-                    :src="place.image"
-                    :alt="place.name"
-                    class="rounded"
-                    style="width: 120px; height: 120px; object-fit: cover"
-                  />
+                <div class="imgBox">
+                  <img :src="place.image" :alt="place.name" />
                   <!-- 收藏愛心按鈕 (疊在圖片左下角) -->
                   <button
-                    class="btn btn-light btn-sm border rounded-circle position-absolute"
-                    style="bottom: 8px; left: 8px; background-color: white"
+                    class="myFavoriteBtn btn-danger"
                     title="收藏"
-                    @click="toggleFavorite(index)"
-                    :class="{'btn-danger': place.isFavorite}"
+                    @click=""
                   >
+                    <!-- 是否為收藏Icon -->
+                    <i v-if="!place.isFavorite" class="fa-regular fa-heart"></i>
                     <i
-                      :class="{'bi bi-heart': !place.isFavorite, 'bi bi-heart-fill': place.isFavorite}"
-                      :style="{ color: place.isFavorite ? 'red' : 'black' }"
+                      v-if="place.isFavorite"
+                      class="fa-solid fa-heart text-danger"
                     ></i>
                   </button>
                 </div>
-
                 <!-- 文字區塊 -->
-                <div class="d-flex flex-column flex-grow-1">
-                  <strong class="fs-6 mb-1">{{ place.name }}</strong>
-                  <div class="text-warning mb-1">
-                    ⭐ {{ place.rating }} ({{ place.reviews }})
+                <div class="textBox">
+                  <strong>{{ place.name }}</strong>
+                  <div class="ratingNum">
+                    <el-icon><Star-Filled /></el-icon> {{ place.rating }} ({{
+                    place.reviews }})
                   </div>
-                  <small class="text-muted mb-2"
-                    >加入行程 {{ place.trips }} 次</small
-                  >
-
+                  <small>加入行程 {{ place.trips }} 次</small>
                   <!-- 按鈕區: 置底對齊 -->
-                  <div class="d-flex align-items-center gap-2 mt-auto">
+                  <div class="btnBox">
                     <!-- 「到嘉義...」按鈕 -->
-                    <button
-                      class="btn btn-warning btn-sm border-0 rounded-pill d-flex align-items-center gap-1"
-                      title="加入行程"
-                    >
-                      到嘉義... <i class="bi bi-plus"></i>
+                    <button class="addToSchedule" title="加入行程">
+                      加入行程
+                      <i class="addToScheduleIcon fa-solid fa-plus"></i>
                     </button>
                     <!-- 「定位」按鈕 -->
-                    <button
-                      class="btn btn-light btn-sm border rounded-circle"
-                      title="定位"
-                    >
-                      <i class="bi bi-geo-alt"></i>
+                    <button class="moveToLocation">
+                      <el-icon><Location /></el-icon>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- /熱門景點列表 -->
-        </el-main>
-      </el-container>
+          <div class="pushHead"></div>
+        </div>
+      </section>
+
+      <!-- 切換地圖與景點牆按鈕 -->
+      <section class="switcherBtn">
+        <button
+        class="custom_button"
+          v-if="showProducts && isMobile"
+          @click="showProductsBox()"
+          
+        >
+          <i class="fa-solid fa-table-cells-large"></i> 查看景點牆
+        </button>
+        <button
+        class="custom_button"
+          v-if="!showProducts && isMobile"
+          @click="showProductsBox()"
+          
+        >
+          <i class="fa-solid fa-map-location-dot"></i> 查看地圖
+        </button>
+      </section>
     </div>
 
-    <script>
-      const { createApp, ref, computed } = Vue;
-      const { Location, Compass, Flag, ShoppingCart, Star, Lightbulb, User } =
-        ElementPlusIconsVue;
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
 
-      createApp({
-        setup() {
-          return {           
-            Location,
-            Compass,
-            Flag,
-            ShoppingCart,
-            Star,
-            Lightbulb,
-            User,
-          };
-        },
-
-        data() {
-          return {
-            /* 側欄展開/收合狀態 */
-            isCollapsed: true,
-            activeIndex: "2",
-            isDropdownOpen: false,
-            /* 搜尋欄位 */
-            searchQuery: "",
-            /* 熱門景點資料 */
-            places: [
-              {
-                name: "北投溫泉博物館",
-                rating: "4.5",
-                reviews: "9.6K",
-                trips: "2365",
-                image: "https://picsum.photos/100/100?random=1",
-                isFavorite: false,
-              },
-              {
-                name: "臺北市立圖書館 北投分館",
-                rating: "4.5",
-                reviews: "2.9K",
-                trips: "1214",
-                image: "https://picsum.photos/100/100?random=2",
-                isFavorite: false,
-              },
-              {
-                name: "新北投車站",
-                rating: "4.4",
-                reviews: "4.9K",
-                trips: "908",
-                image: "https://picsum.photos/100/100?random=3",
-                isFavorite: false,
-              },
-            ],
-
-            hovered: false,
-            showPanel: false,
-            selectedOption: "recent_lastEdit",
-            /* 行程資料 */
-            trips: [
-              {
-                img: "https://picsum.photos/200/150?random=1",
-                title: "到嘉義就是要吃！",
-                date: "2024/07/01 - 2024/07/03",
-              },
-              {
-                img: "https://picsum.photos/200/150?random=2",
-                title: "浪漫東京遊 🦊",
-                date: "2025/01/14 - 2025/01/18",
-              },
-            ],
-          };
-        },
-        methods: {
-          /** 側欄滑入滑出 */
-          expandMenu() {
-            clearTimeout(this.timeoutId);
-            this.timeoutId = setTimeout(() => {
-              this.isCollapsed = false;
-            }, 50);
-          },
-          collapseMenu() {
-            clearTimeout(this.timeoutId);
-            this.timeoutId = setTimeout(() => {
-              this.isCollapsed = true;
-            }, 300);
-          },
-          /** 熱門景點列表相關 */
-          toggleDropdown() {
-            this.isDropdownOpen = !this.isDropdownOpen;
-          },
-          closeList() {
-            // 按「X」後可清空搜尋
-            this.searchQuery = "";
-          },
-          toggleFavorite(index) {
-            this.places[index].isFavorite = !this.places[index].isFavorite;
-          },
-          togglePanel(bool) {
-            this.showPanel = bool;
-          },
-          shareTrip(index) {
-            alert(`分享行程: ${index}`);
-          },
-          copyTrip(index) {
-            alert(`複製行程: ${index}`);
-          },
-          inviteTrip(index) {
-            alert(`邀請共編: ${index}`);
-          },
-          deleteTrip(index) {
-            alert(`刪除行程: ${index}`);
-          },
-          createNewTrip() {
-            alert("建立新行程");
-          },
-          closePanelOutside(event) {
-            if (!event.target.closest(".position-fixed.top-0.end-0.bottom-0")) {
-              this.showPanel = false;
-            }
-          },
-        },
-        computed: {
-          /**
-           * 🔸 讓頂部列隨側欄寬度「往右推」
-           *    isCollapsed = true => 側欄寬 64px
-           *    isCollapsed = false => 側欄寬 160px
-           */
-          //   topBarStyle() {
-          //     const sideWidth = this.isCollapsed ? 64 : 160;
-          //     return {
-          //       left: sideWidth + "px",
-          //       transition: "0.3s",
-          //     };
-          //   },
-          /**
-           *    熱門景點列表 位置 (固定在搜尋列下方)
-           *    若你想更貼近搜尋框，可微調 top。
-           *    同樣根據側欄寬度動態位移 left，避免被擋住。
-           */
-          placesListStyle() {
-            const sideWidth = this.isCollapsed ? 64 : 160;
-            return {
-              position: "fixed",
-              top: "80px", // 可微調
-              left: sideWidth + "px",
-              width: "350px",
-              zIndex: "2000",
-              transition: "0.3s",
-            };
-          },
-        },
-        mounted() {
-          // === Leaflet 地圖初始化 ===
-          const map = L.map("map", { zoomControl: false }).setView(
-            [25.033, 121.5654],
-            13
-          );
-
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution:
-              '© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-          }).addTo(map);
-
-          // 自訂縮放按鈕事件
-          document.getElementById("btnZoomIn").onclick = () => map.zoomIn();
-          document.getElementById("btnZoomOut").onclick = () => map.zoomOut();
-          document.getElementById("btnCrosshair").onclick = () => {
-            map.setView([25.033, 121.5654], 13);
-          };
-        },
-      })
-        .use(ElementPlus)
-        .mount("#index");
-    </script>
+    <!-- 引入 Leaflet.js -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

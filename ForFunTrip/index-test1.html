@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Plus Icons 問題修正</title>
+    <!-- ✅ 先載入 Vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- 引入 Element Plus 樣式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- 引入完整的 Element Plus（包含 Icons） -->
+    <script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
+    <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+</head>
+<body>
+    <div id="app">
+        
+      
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        const app = createApp({
+            data() {
+                return {};
+            }
+        });
+
+        // 註冊 Element Plus
+        app.use(ElementPlus);
+
+        // 註冊所有 Icons
+        for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+            app.component(key, component);
+        }
+        console.log(window.ElementPlusIconsVue);
+
+        app.mount("#app");
+    </script>
+</body>
+</html>

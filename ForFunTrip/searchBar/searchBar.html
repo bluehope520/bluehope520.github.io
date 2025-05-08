@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Maps UI Clone (Bootstrap version)</title>
 
-    <!-- Vue 3 & Element Plus (只保留 Vue 用於掛載，有需要時再使用 ElementPlus) -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
-    <script src="https://unpkg.com/element-plus"></script>
+    <!-- 引入 Bootstrap 5 & Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- 引入 Bootstrap 5 與 Bootstrap Icons -->
+    <!-- Vue 3 & Element Plus -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      href="https://unpkg.com/element-plus/dist/index.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    ></script>
+    <script src="https://unpkg.com/element-plus"></script>
 
     <style>
       /* 背景顏色可由 Bootstrap 工具類替換, 這裡示範保留原有色塊 */
@@ -62,27 +63,66 @@
         <!-- 功能按鈕群組 -->
         <div class="col-auto d-flex gap-2">
           <!-- 景點 -->
-          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+          <button
+            class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill"
+          >
             <i class="bi bi-camera-fill"></i>
             <span>景點</span>
           </button>
 
           <!-- 美食 -->
-          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+          <button
+            class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill"
+          >
             <i class="bi bi-basket-fill"></i>
             <span>美食</span>
           </button>
 
           <!-- 住宿 -->
-          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+          <button
+            class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill"
+          >
             <i class="bi bi-house-fill"></i>
             <span>住宿</span>
           </button>
 
           <!-- 收藏 -->
-          <button class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill">
+          <button
+            class="btn btn-light d-flex align-items-center gap-1 shadow-custom rounded-pill"
+          >
             <i class="bi bi-star-fill"></i>
             <span>收藏</span>
+          </button>
+        </div>
+      </div>
+      <!-- 地圖區域 (未來嵌入地圖) -->
+      <div class="w-100 vh-100 position-relative bg-white">
+        <!-- 地圖控制按鈕 -->
+        <div
+          class="position-absolute top-50 end-0 translate-middle-y d-flex flex-column me-2"
+          style="z-index: 1000"
+        >
+          <button class="btn btn-light mb-2 shadow">
+            <i class="bi bi-eye"></i>
+          </button>
+          <button class="btn btn-light shadow">
+            <i class="bi bi-signpost"></i>
+          </button>
+        </div>
+
+        <!-- 放大縮小按鈕 -->
+        <div
+          class="position-absolute bottom-0 end-0 mb-3 me-3 d-flex flex-column"
+          style="z-index: 1000"
+        >
+          <button class="btn btn-light mb-2 shadow">
+            <i class="bi bi-crosshair"></i>
+          </button>
+          <button class="btn btn-light mb-2 shadow">
+            <i class="bi bi-plus"></i>
+          </button>
+          <button class="btn btn-light shadow">
+            <i class="bi bi-dash"></i>
           </button>
         </div>
       </div>
@@ -94,8 +134,8 @@
       createApp({
         // 如有需要可在此定義 Vue 組件或資料
       })
-      .use(ElementPlus)
-      .mount('#searchBar');
+        .use(ElementPlus)
+        .mount("#searchBar");
     </script>
   </body>
 </html>

@@ -1,84 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./css/itinerary_detail.css">
-    <style type="text/css"></style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>行程詳情頁面</title>
+    
+    <!-- 引入 Bootstrap 5 與 Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <div class="header-left">&lt; 行程列表</div>
-        <div class="header-right">
-          <img src="./upload.png" alt="upload" />
-          <img src="./setting.png" alt="setting" />
-          X
+  <body class="bg-light">
+    <div class="container mt-4 p-4 bg-white shadow-sm rounded">
+      <header class="d-flex justify-content-between align-items-center">
+        <a href="#" class="text-primary">&lt; 行程列表</a>
+        <div>
+          <i class="bi bi-upload me-2"></i>
+          <i class="bi bi-gear"></i>
+          <span class="ms-2">X</span>
         </div>
       </header>
-
-      <nav class="tab-nav">
-        <ul>
-          <li>總覽頁</li>
-          <li>第1天</li>
-          <li>第2天</li>
-          <li>第3天</li>
-          <li>第4天</li>
-          <li>...</li>
-          <li class="add-button">+</li>
-        </ul>
+      
+      <nav class="nav nav-tabs mt-3">
+        <a class="nav-link active" href="#">總覽頁</a>
+        <a class="nav-link" href="#">第1天</a>
+        <a class="nav-link" href="#">第2天</a>
+        <a class="nav-link" href="#">第3天</a>
+        <a class="nav-link" href="#">第4天</a>
+        <a class="nav-link text-primary" href="#">+</a>
       </nav>
-
-      <section class="trip-details">
-        <h1>浪漫東京遊 <span class="emoji">😻</span> | Panasonic</h1>
-        <h2>Beauty表參道旗艦店體驗 - 複製 <span class="edit-icon">✏️</span></h2>
-        <p class="date">2025/01/14 - 2025/01/18</p>
-        <p class="description">
-          -絕對攻略 | 和另一半的東京浪漫小旅行 ✈️
+      
+      <section class="mt-3">
+        <h1>浪漫東京遊 😻 | Panasonic</h1>
+        <h2 class="h5 text-secondary">Beauty表參道旗艦店體驗 - <i class="bi bi-pencil"></i></h2>
+        <p class="text-muted">2025/01/14 - 2025/01/18</p>
+        <p class="text-muted">
+          絕對攻略 | 和另一半的東京浪漫小旅行 ✈️
           小編精心為各位整理了熱門購物街區, 不管是想趁出國買精品,
           或是想找日本特色品牌,...編輯筆記
         </p>
       </section>
-
-      <section class="advertisement">
-        <img src="./advertisement.png" alt="advertisement" />
+      
+      <section class="mt-3">
+        <img src="./advertisement.png" alt="advertisement" class="img-fluid rounded" />
       </section>
-
-      <section class="my-tools">
-        <h3>我的工具</h3>
-        <div class="tools-grid">
-          <div class="tool-item">
-            <img src="./collect.png" alt="收藏" />
-            <span>收藏</span>
+      
+      <section class="mt-4">
+        <h3 class="h5">我的工具</h3>
+        <div class="row g-2">
+          <div class="col-6 text-center">
+            <div class="p-3 bg-light rounded text-center">
+              <i class="bi bi-heart-fill fs-3"></i>
+              <p class="mb-0">收藏</p>
+            </div>
           </div>
-          <div class="tool-item">
-            <img src="./co-edit.png" alt="共編" />
-            <span>共編</span>
+          <div class="col-6 text-center">
+            <div class="p-3 bg-light rounded text-center">
+              <i class="bi bi-people-fill fs-3"></i>
+              <p class="mb-0">共編</p>
+            </div>
           </div>
-          <div class="tool-item">
-            <img src="./transfer.png" alt="轉小書" />
-            <span>轉小書</span>
+          <div class="col-6 text-center">
+            <div class="p-3 bg-light rounded text-center">
+              <i class="bi bi-book-fill fs-3"></i>
+              <p class="mb-0">轉小書</p>
+            </div>
           </div>
-          <div class="tool-item new">
-            <img src="./find.png" alt="找住宿" />
-            <span>找住宿</span>
-            <span class="new-label">New</span>
+          <div class="col-6 text-center position-relative">
+            <div class="p-3 bg-light rounded text-center">
+              <i class="bi bi-building-fill fs-3"></i>
+              <p class="mb-0">找住宿</p>
+            </div>
+            <span class="position-absolute top-0 end-0 bg-warning text-white px-2 py-1 small rounded">New</span>
           </div>
         </div>
       </section>
     </div>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

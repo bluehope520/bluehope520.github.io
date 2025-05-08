@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Element Plus Sidebar with Bootstrap 5</title>
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.min.js"></script>
+    <!-- Element Plus CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/dist/index.css"
+    />
+    <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+
+    <script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      /* 側邊欄收合寬度切換 (Bootstrap 無此細項，需自行定義) */
+      .aside-collapsed {
+        width: 64px;
+        transition: width 0.3s ease;
+      }
+      .aside-expanded {
+        width: 160px;
+        transition: width 0.3s ease;
+      }
+      /* 側邊欄收合/展開動畫 */
+      .sidebar-hidden {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+      .sidebar-visible {
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+      }
+
+      /* RWD 小筆電 (>=992px) 才會顯示 */
+      @media (min-width: 992px) {
+        .menu-btn {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="m-0 p-0">
+    <body class="m-0 p-0">
+      <div id="app" class="bg-light">
+        <!-- 📌 漢堡按鈕 (圖1) -->
+        <button
+          class="menu-btn position-fixed top-0 start-0 m-3 border-0 bg-transparent"
+          @click="toggleSidebar"        
+        >
+          <i class="bi bi-list fs-3"></i>
+        </button>
+
+        <el-container class="d-flex flex-row min-vh-100">
+          <!-- 📌 側邊選單 (圖2) -->
+          <el-aside
+            :class="[
+              'bg-white shadow overflow-hidden d-flex flex-column justify-content-between',
+              isSidebarOpen ? 'sidebar-visible' : 'sidebar-hidden'
+            ]"
+          >
+            <el-menu :default-active="activeIndex" class="border-0 flex-grow-1">
+              <!-- 📌 關閉按鈕 -->
+              <el-menu-item class="d-flex align-items-center px-3 py-2">
+                <i class="bi bi-x-lg fs-5" @click="toggleSidebar"></i>
+              </el-menu-item>
+
+              <!-- 📌 選單 -->
+              <el-menu-item index="2"
+                ><el-icon><compass /></el-icon> 發現</el-menu-item
+              >
+              <el-menu-item index="3"
+                ><el-icon><flag /></el-icon> 行程靈感</el-menu-item
+              >
+              <el-menu-item index="4"
+                ><el-icon><shopping-cart /></el-icon> 商城</el-menu-item
+              >
+              <el-menu-item index="5"
+                ><el-icon><flag /></el-icon> 去想這夢想</el-menu-item
+              >
+              <el-menu-item index="6"
+                ><el-icon><user /></el-icon> 會員</el-menu-item
+              >
+            </el-menu>
+          </el-aside>
+        </el-container>
+      </div>
+    </body>
+
+    <script>
+      const { createApp } = Vue;
+
+      const app = createApp({
+        data() {
+          return {
+            isSidebarOpen: false, // 側邊欄是否開啟
+            activeIndex: "2", // 預設選單選中項目
+            windowWidth: window.innerWidth, // 當前視窗寬度
+          };
+        },
+        methods: {
+          toggleSidebar() {
+            this.isSidebarOpen = !this.isSidebarOpen;
+          },
+          updateWindowWidth() {
+            this.windowWidth = window.innerWidth;
+          },
+        },
+        mounted() {
+          // 監聽視窗大小變化
+          window.addEventListener("resize", this.updateWindowWidth);
+        },
+        beforeUnmount() {
+          // 移除監聽
+          window.removeEventListener("resize", this.updateWindowWidth);
+        },
+      });
+      app.use(ElementPlus);
+      // 註冊所有 Icons
+      for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+        app.component(key, component);
+      }
+      console.log(window.ElementPlusIconsVue);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
